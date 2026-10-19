@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoMo Trust Index Dashboard — Pre-Campaign → Oct W1 2026</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  body { font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; background:#f3f4f8; color:#1f2937; }
+  .card { background:#ffffff; border:1px solid #f0d9e6; border-radius:16px; box-shadow: 0 1px 3px rgba(17,24,39,0.06); }
+  .accent { color:#e6007e; }
+  .bg-accent { background:#e6007e; }
+  .pill { background:#fde3f0; color:#be185d; border-radius:999px; padding:4px 12px; font-size:12px; font-weight:600; }
+  .nav-link { color:#6b7280; }
+  .nav-link.active { color:#e6007e; border-color:#e6007e; }
+  .scroll-mt { scroll-margin-top: 110px; }
+  table.datatable th, table.datatable td { padding:8px 12px; border-bottom:1px solid #f1f2f4; font-size:13px; }
+  table.datatable th { color:#6b7280; text-align:left; font-weight:600; }
+  .tag-low { background:#fde3ec; color:#db2777; }
+  .tag-mid { background:#fef3c7; color:#b45309; }
+  .tag-high { background:#d1fae5; color:#047857; }
+  .glow { box-shadow: 0 4px 24px rgba(230,0,126,0.12); }
+  .insight-box { background:linear-gradient(90deg,#fdf2f8,#fff); border-left:4px solid #e6007e; }
+  ::-webkit-scrollbar{ width:8px; height:8px;} ::-webkit-scrollbar-thumb{ background:#e5e7eb; border-radius:8px;}
+</style>
+</head>
+<body class="min-h-screen">
+
+<!-- HERO BANNER -->
+<header class="bg-gradient-to-r from-[#d6006f] to-[#e6007e]">
+  <div class="max-w-7xl mx-auto px-6 pt-8 pb-7">
+    <div class="flex items-center gap-2 text-[11px] font-semibold tracking-widest text-pink-100 uppercase mb-3">
+      <span>MoMo · Trust Index Tracking</span><span class="opacity-50">·</span><span>Research Report 2026</span>
+    </div>
+    <h1 class="text-2xl md:text-[32px] font-bold text-white max-w-4xl leading-snug">Trust Index — Niềm tin &amp; cảm nhận an toàn tài chính số của người dùng MoMo</h1>
+    <p class="text-pink-100 mt-2 text-sm">6 đợt khảo sát (Pre-Campaign → Oct W1) · n ≈ 2,055 – 7,044 / đợt · COMPLETED only · Cập nhật: Oct W1 2026</p>
+  </div>
+</header>
+
+<!-- TAB NAV -->
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+  <div id="navlinks" class="max-w-7xl mx-auto px-6 flex items-center gap-6 text-sm font-medium overflow-x-auto">
+    <a href="#overview" data-target="overview" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Overview</a>
+    <a href="#kpi" data-target="kpi" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">KPI Theo Quý</a>
+    <a href="#trend" data-target="trend" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Trust Index Trend</a>
+    <a href="#pillars" data-target="pillars" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Q1–Q4 Deep Dive</a>
+    <a href="#outcomes" data-target="outcomes" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Q5–Q6</a>
+    <a href="#segments" data-target="segments" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Segments</a>
+    <a href="#drivers" data-target="drivers" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Drivers</a>
+    <a href="#rootcause" data-target="rootcause" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Root Cause</a>
+    <a href="#recommend" data-target="recommend" class="nav-link border-b-2 border-transparent py-3 hover:text-gray-900 whitespace-nowrap cursor-pointer">Recommendations</a>
+  </div>
+</nav>
+
+<!-- ================= OVERVIEW ================= -->
+<section id="overview" class="page max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">1. Overview</h2>
+  <p class="text-gray-500 text-sm mb-6">Background · Research Objective · Cấu trúc bảng câu hỏi · Segment sử dụng trong dashboard</p>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="card p-6">
+      <h3 class="text-gray-900 font-semibold mb-2">📌 Background</h3>
+      <p class="text-sm text-gray-600 leading-relaxed">MoMo triển khai chiến dịch truyền thông chủ đề <b class="text-gray-800">"An toàn bảo mật / An toàn tài chính số"</b> xuyên suốt năm 2026, xoay quanh 3 nhóm nội dung (pillar):</p>
+      <ul class="text-sm text-gray-600 mt-3 space-y-2">
+        <li><span class="text-pink-600 font-semibold">Pillar 1 &amp; 4 — Thương hiệu &amp; Tính năng bảo mật:</span> công nghệ AI cảnh báo rủi ro chuyển tiền, phát biểu lãnh đạo MoMo, SChannel review...</li>
+        <li><span class="text-pink-600 font-semibold">Pillar 2 — Đối tác uy tín:</span> hợp tác Bộ Công An / Liên Minh Niềm Tin Số, Vietcombank Neo (Ví Trả Sau)...</li>
+        <li><span class="text-pink-600 font-semibold">Pillar 3 — Reality Ads / Short Drama:</span> phim ngắn "Xà tinh đội lốt người lừa đảo", MoMo x Tăng Duy Tân, nội dung giải trí lan truyền.</li>
+      </ul>
+      <p class="text-sm text-gray-600 mt-3 leading-relaxed">Để đo lường hiệu quả, một khảo sát theo dõi định kỳ <b class="text-gray-800">"Trust Index"</b> được field liên tục qua 6 đợt: <b>Pre-Campaign (baseline)</b>, <b>May</b>, <b>June</b>, <b>August Wave 2</b>, <b>August Wave 4</b>, <b>October Wave 1</b>.</p>
+    </div>
+
+    <div class="card p-6">
+      <h3 class="text-gray-900 font-semibold mb-2">🎯 Research Objective</h3>
+      <ul class="text-sm text-gray-600 space-y-3">
+        <li><b class="text-gray-800">(1) Theo dõi KPI:</b> Trust Index mục tiêu <span class="accent font-semibold">4.31/5</span> (uplift +2% QoQ so với baseline 4.175) — đo bằng Mean (1–5) &amp; Top-2 Box (%).</li>
+        <li><b class="text-gray-800">(2) Chẩn đoán driver &amp; barrier:</b> yếu tố nào kéo niềm tin lên/xuống ở từng trụ cột (thương hiệu, đối tác, đánh giá người dùng, truyền thông).</li>
+        <li><b class="text-gray-800">(3) Đánh giá hiệu quả creative/pillar/kênh:</b> nội dung & kênh nào thực sự chuyển hoá awareness → trust.</li>
+        <li><b class="text-gray-800">(4) Phân khúc hành vi:</b> nhóm tương tác app (Hardcore/Medium/Light), nhóm gặp UX issue thực tế, nhóm mức độ tin tưởng — để khoanh vùng root cause.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Questionnaire structure -->
+  <div class="card p-6 mt-5">
+    <h3 class="text-gray-900 font-semibold mb-4">🧩 Cấu trúc bảng câu hỏi (6 trụ cột KPI — xuyên suốt mọi đợt)</h3>
+    <p class="text-sm text-gray-600 mb-4">Số thứ tự mã câu hỏi (A1, A2…) thay đổi nhẹ giữa các đợt do thêm/bớt câu hỏi phụ, nhưng <b class="text-gray-800">luôn quy về 6 KPI cố định</b>. Trust Index = trung bình Q1–Q4; Q5–Q6 theo dõi riêng dạng Top-2 Box (%) như chỉ số kết quả (outcome).</p>
+    <div class="grid md:grid-cols-3 gap-3 text-sm">
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">0. Awareness (A1–A2)</div><div class="text-gray-600">Gợi nhớ thông tin An toàn bảo mật/tài chính số từ MoMo trong 1 tháng qua + kênh tiếp cận.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q1 · Thương hiệu phổ biến</div><div class="text-gray-600">"MoMo là thương hiệu phổ biến, được nhiều người tin dùng rộng rãi" (scale 1–5) + so sánh ví khác đang dùng.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q2 · Đối tác uy tín</div><div class="text-gray-600">"MoMo hợp tác với nhiều đối tác/tổ chức lớn, uy tín" + rào cản chưa cảm nhận được + kỳ vọng đối tác mới.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q3 · Đánh giá tích cực</div><div class="text-gray-600">"MoMo được đánh giá tích cực từ người dùng" + phản hồi tiêu cực đã thấy, nguồn tin, mối lo ngại nhất.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q4 · Truyền thông tin cậy</div><div class="text-gray-600">"Hình ảnh, phong cách truyền thông, thông điệp đáng tin cậy" + điểm chưa đáng tin + gu nội dung ưa thích + kênh.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Bảo mật (A17–A19)</div><div class="text-gray-600">Nhận biết 7 tính năng bảo mật cụ thể (AI cảnh báo, báo cáo lừa đảo…) + mức đáp ứng kỳ vọng + lý do chưa đáp ứng.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q5 · An tâm sử dụng</div><div class="text-gray-600">"Tôi cảm thấy an tâm hơn khi sử dụng MoMo (chuyển tiền, vay…)" — outcome KPI, Top-2 Box %.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Q6 · Công cụ ATBM</div><div class="text-gray-600">"MoMo có nhiều Công cụ An Toàn Bảo Mật bảo vệ tiền của tôi" — outcome KPI, Top-2 Box %.</div></div>
+      <div class="bg-pink-50 rounded-xl p-4 border border-pink-100"><div class="text-pink-600 font-semibold mb-1">Trust Index</div><div class="text-gray-600">Trung bình Mean(1–5) của Q1+Q2+Q3+Q4 → đối sánh với KPI mục tiêu 4.31.</div></div>
+    </div>
+  </div>
+
+  <!-- Segments -->
+  <div class="card p-6 mt-5">
+    <h3 class="text-gray-900 font-semibold mb-4">🧬 Segment sử dụng trong dashboard</h3>
+    <p class="text-sm text-gray-600 mb-4">Raw data <b class="text-gray-800">không có biến nhân khẩu học</b> (tuổi/giới tính/vùng). Toàn bộ segment dưới đây được xây từ <b class="text-gray-800">hành vi &amp; thái độ thực tế trong data</b>:</p>
+    <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-3 text-sm">
+      <div class="bg-pink-50 rounded-xl p-4"><div class="font-semibold text-gray-900 mb-1">① Theo thời gian (wave)</div><div class="text-gray-600 text-xs">Pre-Campaign → May → Jun → Aug W2 → Aug W4 → Oct W1</div></div>
+      <div class="bg-pink-50 rounded-xl p-4"><div class="font-semibold text-gray-900 mb-1">② Theo mức tin tưởng (tự xây, May)</div><div class="text-gray-600 text-xs">Low (TB Q1–Q4 ≤3, 4.4%) · Mid (3–4.5, 21.6%) · High (≥4.5, 74.0%)</div></div>
+      <div class="bg-pink-50 rounded-xl p-4"><div class="font-semibold text-gray-900 mb-1">③ Theo UX issue thực tế (Jun)</div><div class="text-gray-600 text-xs">Thấy Ads khó chịu · App lag · CSKH chậm · Không issue</div></div>
+      <div class="bg-pink-50 rounded-xl p-4"><div class="font-semibold text-gray-900 mb-1">④ Theo pillar tiếp xúc (Aug W4)</div><div class="text-gray-600 text-xs">Chỉ Reality Ads · Pillar 1&4 · Pillar 2 · Pillar 3 · Kết hợp nhiều pillar</div></div>
+      <div class="bg-pink-50 rounded-xl p-4"><div class="font-semibold text-gray-900 mb-1">⑤ Theo mức độ gắn bó app (Aug W4)</div><div class="text-gray-600 text-xs">Hardcore · Medium · Light (tần suất dùng app)</div></div>
+    </div>
+  </div>
+
+  <!-- Sample size table -->
+  <div class="card p-6 mt-5 overflow-x-auto">
+    <h3 class="text-gray-900 font-semibold mb-4">📊 Quy mô mẫu theo đợt</h3>
+    <table class="datatable w-full">
+      <thead><tr><th>Đợt khảo sát</th><th>Mốc thời gian</th><th>n (fielded)</th><th>n (dùng phân tích Trust Index)</th><th>Ghi chú</th></tr></thead>
+      <tbody>
+        <tr><td class="text-gray-800">Pre-Campaign</td><td>Baseline trước chiến dịch</td><td>6,985</td><td>6,985 (Q1–Q4) · 1,236 (Q5–Q6)</td><td>Base Q5–Q6 là subsample riêng</td></tr>
+        <tr><td class="text-gray-800">May</td><td>26–28/05/2026</td><td>2,055</td><td>2,055</td><td>100% COMPLETED, dữ liệu sạch nhất — dùng làm nguồn cross-tab segment</td></tr>
+        <tr><td class="text-gray-800">June</td><td>06/2026</td><td>2,268</td><td>2,268 (riêng UX-issue deep dive n=586)</td><td>Có hiện tượng sample bias (xem Root Cause RC1)</td></tr>
+        <tr><td class="text-gray-800">August W2</td><td>08/2026</td><td>3,121</td><td>3,121 (2,437–3,103 cho sub-cut)</td><td>Có bảng Trust Index theo lý do tiêu cực cụ thể</td></tr>
+        <tr><td class="text-gray-800">August W4</td><td>08/2026</td><td>3,121</td><td>1,327 (sau loại response quá nhanh/không hợp lệ)</td><td>Có phân tích theo pillar tiếp xúc &amp; engagement tier</td></tr>
+        <tr><td class="text-gray-800">October W1</td><td>10/2026</td><td>1,131</td><td>839 (loại response &lt;1 phút)</td><td>Mẫu nhỏ nhất trong tracker — cần lưu ý độ tin cậy</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ================= KPI THEO QUÝ ================= -->
+<section id="kpi" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">2. Trust Index — KPI Theo Quý (Full Year 2026)</h2>
+  <p class="text-gray-500 text-sm mb-6">Quy đổi 6 đợt field về 4 quý theo lịch (Q1=Baseline, Q2=May+Jun, Q3=Aug W2+Aug W4, Q4=Oct W1 — đang chạy). KPI mục tiêu tăng +2%/quý (QoQ) tính từ baseline 4,175.</p>
+
+  <div class="card overflow-hidden mb-5">
+    <div class="bg-gradient-to-r from-[#e6007e] to-[#ff5aa8] text-white text-center font-bold text-sm py-2.5 tracking-wide">AVG SCORE BY QUARTER COMPARISON — TRUST INDEX (MEAN 1–5)</div>
+    <table class="w-full text-sm">
+      <thead>
+        <tr>
+          <th class="text-left bg-[#ff5aa8] text-white px-4 py-3 font-semibold whitespace-nowrap">Branding Score Comparison</th>
+          <th class="bg-[#ff5aa8] text-white px-4 py-3 font-semibold text-center">Q1 2026<br><span class="font-normal text-[11px] text-pink-50">Baseline · Pre-Campaign</span></th>
+          <th class="bg-[#ff5aa8] text-white px-4 py-3 font-semibold text-center">Q2 2026<br><span class="font-normal text-[11px] text-pink-50">May + Jun</span></th>
+          <th class="bg-[#ff5aa8] text-white px-4 py-3 font-semibold text-center">Q3 2026<br><span class="font-normal text-[11px] text-pink-50">Aug W2 + Aug W4</span></th>
+          <th class="bg-[#7a004f] text-white px-4 py-3 font-semibold text-center">Q4 2026<br><span class="font-normal text-[11px] text-pink-100">Oct W1 · đang chạy</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bg-gray-50">
+          <td class="px-4 py-3 font-semibold text-gray-800">KPI mục tiêu</td>
+          <td class="px-4 py-3 text-center text-gray-800">4,18</td>
+          <td class="px-4 py-3 text-center text-gray-800">4,26</td>
+          <td class="px-4 py-3 text-center text-gray-800">4,34</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 font-semibold text-[#7a004f]">4,43</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-semibold text-gray-800">Actual</td>
+          <td class="px-4 py-3 text-center text-gray-800">4,18</td>
+          <td class="px-4 py-3 text-center text-emerald-600 font-semibold">4,32</td>
+          <td class="px-4 py-3 text-center text-pink-600 font-semibold">3,93</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 text-pink-600 font-semibold">3,91*</td>
+        </tr>
+        <tr class="bg-gray-50">
+          <td class="px-4 py-3 font-semibold text-gray-800">Gap vs KPI</td>
+          <td class="px-4 py-3 text-center text-gray-500">0,00</td>
+          <td class="px-4 py-3 text-center text-emerald-600">+0,06</td>
+          <td class="px-4 py-3 text-center text-pink-600">−0,41</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 text-pink-600 font-semibold">−0,53</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-semibold text-gray-800">Uplift KPI mục tiêu <span class="font-normal text-gray-500">(QoQ)</span></td>
+          <td class="px-4 py-3 text-center text-gray-400">—</td>
+          <td class="px-4 py-3 text-center text-gray-800">+2%</td>
+          <td class="px-4 py-3 text-center text-gray-800">+2%</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 text-gray-800 font-semibold">+2%</td>
+        </tr>
+        <tr class="bg-gray-50">
+          <td class="px-4 py-3 font-semibold text-gray-800">Actual uplift <span class="font-normal text-gray-500">(QoQ thực tế)</span></td>
+          <td class="px-4 py-3 text-center text-gray-400">—</td>
+          <td class="px-4 py-3 text-center text-emerald-600">+3,4%</td>
+          <td class="px-4 py-3 text-center text-pink-600">−8,9%</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 text-pink-600 font-semibold">−0,7%</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-semibold text-gray-800">% Đạt so với KPI</td>
+          <td class="px-4 py-3 text-center text-gray-800">100%</td>
+          <td class="px-4 py-3 text-center text-emerald-600 font-semibold">101%</td>
+          <td class="px-4 py-3 text-center text-pink-600 font-semibold">91%</td>
+          <td class="px-4 py-3 text-center bg-[#7a004f]/10 text-pink-600 font-semibold">88%</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="text-xs text-gray-500 mb-5">*Q4 2026 mới field 1 đợt (Oct W1, n=839) — số liệu tạm thời, quý chưa kết thúc nên chưa đại diện đủ. Actual mỗi quý = trung bình các đợt field trong quý; KPI = baseline 4,175 tăng +2%/quý theo Research Objective đã đặt ra.</p>
+
+  <div class="card p-6 mb-5">
+    <h4 class="text-gray-900 font-semibold mb-3">KPI mục tiêu vs Actual theo Quý</h4>
+    <canvas id="chartKPIQuarter" height="90"></canvas>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📈 Nhận định</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li>Chỉ <b class="text-emerald-600">Q2 2026 vượt KPI</b> (4,32 vs mục tiêu 4,26, đạt 101%) — nhờ hiệu ứng đỉnh May, dù Jun đã kéo trung bình quý xuống đáng kể.</li>
+        <li>Từ <b class="text-pink-600">Q3 2026 trở đi, khoảng cách với KPI nới rộng nhanh</b>: hụt 0,41 điểm (91% KPI) ở Q3 và hụt tới 0,53 điểm (88% KPI, số liệu tạm) ở Q4 — vì KPI vẫn tăng +2%/quý trong khi Actual đang giảm.</li>
+        <li>Nếu xu hướng Q3–Q4 tiếp diễn, khoảng cách Actual–KPI sẽ tiếp tục doãng ra ở Q1 2027 (KPI dự kiến ~4,52) — rủi ro không đạt KPI cả năm là rất cao nếu không có can thiệp.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-pink-600 bg-pink-50/40">
+      <h4 class="text-gray-900 font-semibold mb-2">✅ Recommendation</h4>
+      <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+        <li><b>Rà soát lại mức tăng KPI +2%/quý</b> — biên độ này được đặt dựa trên đà tăng ảo của Q2 (hiệu ứng mới lạ), không phản ánh tốc độ cải thiện thực tế có thể đạt được khi phải sửa vấn đề vận hành (xem Root Cause).</li>
+        <li><b>Ưu tiên hành động ngay trong Q4 2026</b> để tránh kết năm với khoảng hụt KPI >0,5 điểm — tập trung 3 driver đã xác định: giảm ads/push khó chịu, ổn định hệ thống giờ cao điểm, hiển thị rõ đối tác (xem Drivers &amp; Recommendations).</li>
+        <li>Theo dõi KPI theo quý song song với theo dõi theo đợt (wave) — vì gộp theo quý có thể che khuất biến động mạnh trong-quý (vd. Q2 thực chất là +0,57 rồi −0,57 trong 1 tháng).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TREND ================= -->
+<section id="trend" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">3. Deep Dive — Trust Index tổng thể qua thời gian</h2>
+  <p class="text-gray-500 text-sm mb-6">Trust Index = trung bình Mean(1–5) của Q1+Q2+Q3+Q4, đối chiếu KPI mục tiêu 4.31.</p>
+
+  <div class="grid md:grid-cols-4 gap-4 mb-5">
+    <div class="card p-5"><div class="text-gray-500 text-xs">Baseline (Pre-Campaign)</div><div class="text-2xl font-bold text-gray-900 mt-1">4.18</div><div class="text-xs text-gray-500">KPI mục tiêu: 4.31</div></div>
+    <div class="card p-5 glow border-pink-200"><div class="text-gray-500 text-xs">Đỉnh cao nhất — May</div><div class="text-2xl font-bold text-emerald-600 mt-1">4.60</div><div class="text-xs text-emerald-600">Vượt KPI +6.7%</div></div>
+    <div class="card p-5"><div class="text-gray-500 text-xs">Oct W1 (mới nhất)</div><div class="text-2xl font-bold text-pink-600 mt-1">3.91</div><div class="text-xs text-pink-600">Thấp hơn cả baseline -6.5%</div></div>
+    <div class="card p-5"><div class="text-gray-500 text-xs">Gap vs KPI (Oct W1)</div><div class="text-2xl font-bold text-pink-600 mt-1">-0.40</div><div class="text-xs text-gray-500">Cần thu hẹp ~9.3%</div></div>
+  </div>
+
+  <div class="card p-6">
+    <canvas id="chartTrustTrend" height="110"></canvas>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📈 Nhận định</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li>Trust Index <b class="text-emerald-600">tăng vọt ngay sau campaign launch (May: 4.60)</b>, vượt xa cả baseline (4.18) và KPI mục tiêu (4.31) — hiệu ứng "halo" tích cực ban đầu rất mạnh.</li>
+        <li>Từ <b class="text-pink-600">June trở đi, chỉ số rơi liên tục</b>: Jun 4.03 → Aug W2 3.96 → Aug W4 3.90 → Oct W1 3.91 — ổn định quanh vùng <b>thấp hơn cả baseline trước campaign</b>.</li>
+        <li>Mức sụt giảm lớn nhất xảy ra ngay giữa May → Jun (−0.57 điểm trong 1 tháng) — trùng thời điểm RC1/RC2 (xem Root Cause) ghi nhận sample bias &amp; vấn đề vận hành thực tế (app lag, CSKH).</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-pink-600 bg-pink-50/40">
+      <h4 class="text-gray-900 font-semibold mb-2">✅ Recommendation</h4>
+      <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+        <li><b>Không lấy mốc May làm baseline kỳ vọng</b> — đó là peak nhất thời do hiệu ứng mới lạ của campaign, không phản ánh trạng thái bền vững. Mục tiêu thực tế nên là duy trì Trust Index ổn định trên baseline Pre-Campaign (4.18), không phải lặp lại 4.60.</li>
+        <li><b>Ưu tiên "chặn đà rơi" trước khi đẩy mạnh truyền thông mới</b>: vì nguyên nhân chính của sụt giảm nằm ở trải nghiệm sản phẩm thực tế (xem mục Drivers &amp; Root Cause), không phải thiếu nội dung.</li>
+        <li>Thiết lập lại tần suất đo + cỡ mẫu ổn định (Oct W1 chỉ còn n=839, quá nhỏ để theo dõi xu hướng tin cậy) để tránh nhiễu khi ra quyết định ngân sách.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Q1-Q4 PILLARS ================= -->
+<section id="pillars" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">4. Deep Dive — Từng trụ cột Q1–Q4</h2>
+  <p class="text-gray-500 text-sm mb-6">Mean (1–5) theo từng câu hỏi qua các đợt.</p>
+  <div class="card p-6">
+    <canvas id="chartPillars" height="100"></canvas>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-6">
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-2"><h4 class="text-gray-900 font-semibold">Q1 — Thương hiệu phổ biến</h4><span class="text-xs text-pink-600">4.22 → 4.62 → 3.72</span></div>
+      <p class="text-sm text-gray-600">Rơi mạnh nhất trong 4 trụ cột (Top-2 Box: 92.0% ở May → chỉ 58.4% ở Oct W1). Đây cũng là chỉ số duy nhất rớt xuống <b class="text-pink-600">dưới baseline Pre-Campaign</b> (3.72 vs 4.22) ở Oct W1.</p>
+      <p class="text-xs text-emerald-600 mt-3">→ Recommendation: cần nội dung "social proof" định lượng (số lượng người dùng, thị phần, số liệu bên thứ 3) thay vì chỉ thông điệp cảm tính — vì đây là nhận định mang tính "so sánh thị trường", dễ bị đối thủ (Zalopay, ShopeePay) bào mòn nếu MoMo im lặng.</p>
+    </div>
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-2"><h4 class="text-gray-900 font-semibold">Q2 — Đối tác uy tín</h4><span class="text-xs text-pink-600">4.23 → 4.64 → 3.93</span></div>
+      <p class="text-sm text-gray-600">Rào cản #1 khiến user chưa thấy đối tác uy tín: <b class="text-gray-800">"không nhận diện được đối tác"</b> — nhóm chọn lý do này có Trust Index thấp nhất trong toàn bộ khảo sát (1.86/5, xem mục Drivers).</p>
+      <p class="text-xs text-emerald-600 mt-3">→ Recommendation: hiển thị rõ logo/tên đối tác (Bộ Công An, Vietcombank…) ngay trong luồng sử dụng (transaction flow), không chỉ trong nội dung truyền thông rời rạc — test mockup "hiển thị rõ thông tin" (A8) hiện chỉ đạt Top-2 Box 33.8% trên n=145, cần cải tiến design trước khi scale.</p>
+    </div>
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-2"><h4 class="text-gray-900 font-semibold">Q3 — Đánh giá tích cực</h4><span class="text-xs text-pink-600">4.13 → 4.57 → 3.97</span></div>
+      <p class="text-sm text-gray-600">Phản hồi tiêu cực thực tế phổ biến nhất (May, toàn mẫu): <b class="text-gray-800">App lag giờ cao điểm (5.6%)</b>, CSKH phản hồi chậm (4.2%), nhiều ads/push khó chịu (3.6%) — đều là vấn đề <b>vận hành</b>, không phải nhận thức.</p>
+      <p class="text-xs text-emerald-600 mt-3">→ Recommendation: ưu tiên fix UX/ổn định hệ thống giờ cao điểm &amp; rút ngắn SLA CSKH — vì nhóm từng gặp các vấn đề này kéo Trust Index xuống còn 1.4–2.9/5 (xem UX Issue Groups).</p>
+    </div>
+    <div class="card p-6">
+      <div class="flex items-center justify-between mb-2"><h4 class="text-gray-900 font-semibold">Q4 — Truyền thông tin cậy</h4><span class="text-xs text-pink-600">4.12 → 4.58 → 4.00</span></div>
+      <p class="text-sm text-gray-600">Giữ được mức tốt nhất trong 4 trụ cột ở Oct W1 (4.00, cao hơn cả Aug W2/W4). Điểm yếu lớn nhất theo phản hồi: <b class="text-gray-800">"ít dẫn chứng thực tế/số liệu cụ thể"</b> và <b class="text-gray-800">"không nhất quán giữa truyền thông và trải nghiệm thực tế"</b>.</p>
+      <p class="text-xs text-emerald-600 mt-3">→ Recommendation: mọi nội dung an toàn bảo mật nên kèm số liệu cụ thể (số vụ lừa đảo chặn được, số tiền bảo vệ được) — khớp với insight RC3: creative "Xà tinh" chỉ 12.3% nhớ được vì thiếu yếu tố minh chứng/chuyên gia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Q5-Q6 ================= -->
+<section id="outcomes" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">5. Deep Dive — Q5 (An tâm sử dụng) &amp; Q6 (Công cụ ATBM)</h2>
+  <p class="text-gray-500 text-sm mb-6">Theo dõi riêng dạng Top-2 Box (%) — là chỉ số "outcome" phản ánh cảm nhận an toàn khi thực sự dùng app.</p>
+  <div class="card p-6">
+    <canvas id="chartQ56" height="100"></canvas>
+  </div>
+  <div class="grid md:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📈 Nhận định</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li>Cùng pattern với Trust Index: tăng vọt ở May (Q5: 89.2%, Q6: 87.8%) rồi giảm dần, nhưng <b class="text-emerald-600">vẫn giữ trên baseline</b> ở Oct W1 (Q5: 77.5% vs baseline 74.8%; Q6: 76.2% vs 75.7%) — khác với Trust Index đã rớt dưới baseline.</li>
+        <li>→ Người dùng vẫn <i>cảm nhận an toàn hơn một chút</i> so với trước campaign, dù không còn tin MoMo "phổ biến/uy tín hơn thị trường" như Q1–Q2. Campaign có tác động tồn dư (residual effect) lên cảm giác an tâm cá nhân tốt hơn tác động lên nhận thức thương hiệu.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-pink-600 bg-pink-50/40">
+      <h4 class="text-gray-900 font-semibold mb-2">✅ Recommendation</h4>
+      <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+        <li>Tận dụng điểm mạnh còn lại: tiếp tục đẩy nội dung tính năng bảo mật cụ thể (AI cảnh báo rủi ro — tính năng được nhớ nhiều nhất, 50.4% ở May) để duy trì Q5/Q6.</li>
+        <li>Chuyển trọng tâm ngân sách sang khôi phục Q1/Q2 (đang yếu nhất) bằng nội dung đối tác + định lượng thị phần, vì Q5/Q6 đã tương đối ổn định.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SEGMENTS ================= -->
+<section id="segments" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">6. Deep Dive — Segment theo mức độ tin tưởng (Oct W1, n=748)</h2>
+  <p class="text-gray-500 text-sm mb-6">Viết riêng cho quý gần nhất: tự tính từ raw data <code>clean data (=1,131) - Oct W1</code> (lọc status=COMPLETED &amp; thời gian trả lời ≥60s, loại 90 respondent thiếu toàn bộ Q1–Q4) → trung bình (Q1+Q2+Q3+Q4)/4 mỗi respondent → chia 3 nhóm.</p>
+
+  <div class="grid md:grid-cols-3 gap-5 mb-5">
+    <div class="card p-6 text-center">
+      <div class="text-xs tag-low inline-block px-3 py-1 rounded-full mb-2">Low trust (≤3)</div>
+      <div class="text-3xl font-bold text-gray-900">132</div>
+      <div class="text-xs text-gray-500">17.6% mẫu — nhóm "báo động", tăng mạnh so với các đợt trước</div>
+    </div>
+    <div class="card p-6 text-center">
+      <div class="text-xs tag-mid inline-block px-3 py-1 rounded-full mb-2">Mid trust (3–4.5)</div>
+      <div class="text-3xl font-bold text-gray-900">342</div>
+      <div class="text-xs text-gray-500">45.7% mẫu — nhóm dao động, chiếm đa số</div>
+    </div>
+    <div class="card p-6 text-center">
+      <div class="text-xs tag-high inline-block px-3 py-1 rounded-full mb-2">High trust (≥4.5)</div>
+      <div class="text-3xl font-bold text-gray-900">274</div>
+      <div class="text-xs text-gray-500">36.6% mẫu — nhóm trung thành</div>
+    </div>
+  </div>
+
+  <div class="card p-4 mb-5 bg-pink-50 border-pink-100 text-sm text-gray-700">
+    ⚠️ <b>Lưu ý quý gần nhất:</b> tỷ trọng Low trust (17.6%) cao hơn rõ rệt so với May (4.4%) — cơ cấu niềm tin của Oct W1 đang lệch về phía "dao động/báo động" nhiều hơn các đợt trước, cần đọc các chart dưới trong bối cảnh này.
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-3">Gợi nhớ nội dung campaign theo segment (A1, % chọn)</h4>
+      <canvas id="chartSegA1"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-3">Phản hồi tiêu cực đã thấy, theo segment (A7, % chọn)</h4>
+      <canvas id="chartSegA10"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-3">Mối lo ngại nhất, theo segment (A8, % chọn)</h4>
+      <canvas id="chartSegA12"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-3">Nhận biết tính năng bảo mật, theo segment (A12, % chọn)</h4>
+      <canvas id="chartSegA17"></canvas>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📈 Nhận định (Oct W1)</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li>Gradient rõ nhất nằm ở <b>phản hồi tiêu cực đã thấy (A7)</b>: nhóm Low trust có tỷ lệ thấy "App lag/lỗi hệ thống" 34.1% và "lỗi giao dịch" 24.2%, trong khi nhóm High trust gần như <b>0%</b> cho mọi mục — đây là biến phân tách segment mạnh nhất của đợt này.</li>
+        <li>"Mối lo ngại nhất" (A8) cũng theo cùng pattern: 40.9% nhóm Low trust lo ngại "bảo mật tài khoản/hack" và 33.3% lo "mất tiền/giao dịch lỗi" — so với gần 0% ở nhóm High trust.</li>
+        <li>Khác biệt ở A1/A12 (gợi nhớ nội dung &amp; nhận biết tính năng) <b>nhỏ hơn nhiều</b> so với A7/A8 — ví dụ "AI cảnh báo rủi ro chuyển tiền" vẫn được 36–55% các nhóm biết đến khá đồng đều. Điều này cho thấy ở Oct W1, <b class="text-pink-600">trải nghiệm/lo ngại thực tế là yếu tố phân tách segment rõ hơn awareness nội dung truyền thông</b>.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-pink-600 bg-pink-50/40">
+      <h4 class="text-gray-900 font-semibold mb-2">✅ Recommendation (Oct W1)</h4>
+      <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+        <li><b>Ưu tiên xử lý nhóm Low trust đang phình to (17.6%)</b> bằng can thiệp dịch vụ trực tiếp: rà soát các tài khoản vừa gặp lỗi giao dịch/app lag trong tháng, chủ động liên hệ + bù đắp (voucher/ưu đãi) trong 24–48h thay vì chỉ dùng truyền thông.</li>
+        <li>Theo dõi tỷ trọng Low trust theo từng đợt như một <b>early-warning KPI riêng</b> — mức 17.6% của Oct W1 là điểm neo cần cảnh báo nếu tiếp tục tăng ở đợt kế tiếp.</li>
+        <li>Vì awareness (A1/A12) không phân tách segment mạnh, không nên kỳ vọng chỉ tăng media reach sẽ kéo nhóm Low trust lên — cần song hành với khắc phục vận hành (xem mục Drivers &amp; Root Cause bên dưới).</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DRIVERS ================= -->
+<section id="drivers" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">7. Deep Dive — Driver cụ thể kéo Trust Index lên/xuống (Oct W1, n=748)</h2>
+  <p class="text-gray-500 text-sm mb-6">Viết riêng cho quý gần nhất: tự tính Trust Index trung bình của respondent theo từng lý do họ chọn ở A5/A7/A8/A11/A14 (multi-select), so với trung bình toàn mẫu 3.91 — vì file gốc chưa có bảng driver dựng sẵn cho Oct W1.</p>
+
+  <div class="grid lg:grid-cols-2 gap-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-1">Top 10 lý do "sát thương" Trust Index nhất (Oct W1)</h4>
+      <p class="text-xs text-gray-500 mb-3">Gộp từ A5 (rào cản đối tác), A7 (phản hồi tiêu cực đã thấy), A11 (truyền thông chưa đáng tin). Xếp từ TI thấp nhất.</p>
+      <canvas id="chartReasons"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-1">Trust Index theo nhóm nguyên nhân (Oct W1)</h4>
+      <p class="text-xs text-gray-500 mb-3">Trung bình có trọng số (theo n) của từng nhóm chủ đề A5/A7/A8/A11/A14, so với TI toàn mẫu 3.91.</p>
+      <canvas id="chartUX"></canvas>
+    </div>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-1">Trust Index theo pillar nội dung đã tiếp xúc (A1, Oct W1)</h4>
+      <p class="text-xs text-gray-500 mb-3">P1&amp;4 = nội dung thương hiệu/tính năng bảo mật · P2 = MoMo đồng hành Bộ Công An · P3 = Reality Ads ("Xà tinh lừa đảo").</p>
+      <canvas id="chartPillarExposure"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">ℹ️ Vì sao không có chart Engagement Tier cho Oct W1?</h4>
+      <p class="text-sm text-gray-600">Các đợt trước dùng 3 sheet <code>Agent_id - Light/Medium/Hardcore</code> để gắn tần suất sử dụng app vào từng respondent. Đối chiếu trực tiếp <code>agent_id</code> của 748 respondent Oct W1 với 3 sheet này cho kết quả <b class="text-pink-600">trùng khớp = 0</b> — các sheet tagging chưa được cập nhật cho đợt Oct. Khuyến nghị cập nhật lại bảng tagging engagement ở đợt kế tiếp để duy trì chart này (xem Recommendation #6).</p>
+    </div>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📈 Nhận định (Oct W1)</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li><b class="text-pink-600">Nhóm nguyên nhân "đối tác" (Partner trust) là lực cản mạnh nhất</b> của Oct W1 — TI trung bình chỉ 2.31, thấp hơn cả nhóm "vận hành đã trải nghiệm" (app lag/lỗi giao dịch, TI 2.64). Đây là một khác biệt rõ so với các đợt trước, khi vấn đề vận hành/ads thường là driver âm mạnh nhất.</li>
+        <li>Ở cấp lý do cụ thể: <b class="text-pink-600">"không nhận diện được đối tác" (TI 2.19, n=33)</b> và <b class="text-pink-600">"ít thấy nội dung bảo mật trong truyền thông" (TI 2.21, n=69)</b> là 2 lý do sát thương nhất — cao hơn cả "app lag giờ cao điểm" (TI 2.36).</li>
+        <li><b class="text-amber-600">Reality Ads (Pillar 3) đảo chiều so với Aug W4</b>: nhóm tiếp xúc P3 có TI 3.76 — thấp hơn nhóm không tiếp xúc P3 (3.94); nhóm tiếp xúc <i>cả 3 pillar</i> cũng chỉ đạt 3.73, thấp hơn nhóm chỉ thấy P1&amp;4 (3.93). Trước đây (Aug W4) đa-pillar luôn kéo TI lên; ở Oct W1 việc gắn Reality Ads vào combo lại kéo TI xuống.</li>
+        <li>Nhóm "tính năng bảo mật chưa đáp ứng mong đợi" (A14) là nhóm <i>ít</i> sát thương nhất (TI 3.01) — lý do hàng đầu là "không nghĩ cần đến" (TI 2.22) chứ không phải tính năng kém, cho thấy vấn đề nằm ở <b>nhận thức nhu cầu</b> hơn là chất lượng sản phẩm.</li>
+      </ul>
+    </div>
+    <div class="card p-6 border-l-4 border-pink-600 bg-pink-50/40">
+      <h4 class="text-gray-900 font-semibold mb-2">✅ Recommendation (Oct W1)</h4>
+      <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+        <li><b>Ưu tiên số 1: thiết kế lại cách nhận diện đối tác</b> (logo/badge rõ ràng ngay trong luồng giao dịch, trang giới thiệu đối tác riêng) — vì đây là driver âm mạnh nhất và dễ khắc phục bằng UI/UX hơn là vấn đề hạ tầng.</li>
+        <li><b>Rà soát lại creative Reality Ads</b> — bổ sung thông điệp trấn an/giải pháp đi kèm cảnh báo lừa đảo, tránh hiệu ứng "kích hoạt lo ngại" mà không giải tỏa; A/B test combo pillar ở đợt kế tiếp để xác nhận xu hướng này có lặp lại.</li>
+        <li>Tăng tần suất/độ phủ nội dung an toàn bảo mật (P1&amp;4) cho nhóm chưa tiếp cận đủ — vì "ít thấy nội dung bảo mật" vẫn là rào cản truyền thông sát thương nhất.</li>
+        <li>Cập nhật lại 3 sheet Agent_id Light/Medium/Hardcore để agent_id khớp với mẫu Oct W1, phục vụ phân tích engagement tier ở đợt kế tiếp.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROOT CAUSE ================= -->
+<section id="rootcause" class="page hidden max-w-7xl mx-auto px-6 py-8 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">8. Root Cause Analysis — 3 nguyên nhân chính của Oct W1 (quý gần nhất)</h2>
+  <p class="text-gray-500 text-sm mb-6">Viết riêng cho quý gần nhất, tự phân tích từ raw data <code>clean data (=1,131) - Oct W1</code> (n=748), đối chiếu với các chart ở mục Segments &amp; Drivers.</p>
+  <div class="grid md:grid-cols-3 gap-5">
+    <div class="card p-6 border-t-4 border-pink-600">
+      <div class="text-pink-600 font-bold mb-1">RC1 · Khoảng trống nhận diện đối tác (Partner trust gap)</div>
+      <p class="text-sm text-gray-600">Nhóm chọn "không nhận diện được đối tác" (n=33) có Trust Index chỉ <b class="text-gray-800">2.19/5</b> — lý do sát thương nhất trong toàn bộ Oct W1, vượt qua cả các lỗi vận hành như app lag (2.36) hay lỗi giao dịch (2.63). Kết hợp với "đối tác chưa đủ lớn/quen thuộc" (TI 2.24, n=20), nhóm nguyên nhân "đối tác" có TI trung bình có trọng số thấp nhất trong 5 nhóm driver (2.31). → Gap niềm tin của quý này nằm nhiều ở tầng <b class="text-gray-800">nhận diện/thương hiệu đối tác</b> hơn là trải nghiệm kỹ thuật thuần túy.</p>
+    </div>
+    <div class="card p-6 border-t-4 border-pink-600">
+      <div class="text-pink-600 font-bold mb-1">RC2 · Độ phủ nội dung bảo mật chưa lấp đầy</div>
+      <p class="text-sm text-gray-600">"Ít thấy nội dung về bảo mật, an toàn tài chính" (n=69) là lý do sát thương nhất khiến truyền thông MoMo "chưa đáng tin" (TI 2.21) — cao hơn cả "không nhất quán truyền thông-thực tế" (TI 2.57). Ở segment, nhóm Low trust (17.6% mẫu) vẫn có mức độ nhận biết tính năng bảo mật (A12) thấp hơn High trust ở hầu hết hạng mục (ví dụ "AI cảnh báo rủi ro chuyển tiền": 36.4% vs 55.1%). → Dù đã chạy nhiều pillar nội dung, tần suất/độ phủ với một bộ phận user vẫn chưa đủ.</p>
+    </div>
+    <div class="card p-6 border-t-4 border-pink-600">
+      <div class="text-pink-600 font-bold mb-1">RC3 · Reality Ads đảo chiều hiệu ứng so với Aug W4</div>
+      <p class="text-sm text-gray-600">Nhóm tiếp xúc Pillar 3 "Xà tinh lừa đảo" có TI 3.76 — <b class="text-gray-800">thấp hơn</b> nhóm không tiếp xúc (3.94); nhóm tiếp xúc cả 3 pillar cũng chỉ đạt 3.73, thấp hơn nhóm chỉ thấy P1&amp;4 (3.93). Ở Aug W4, kết hợp đa-pillar luôn kéo TI lên (4.17–4.40); ở Oct W1 xu hướng này đảo ngược với Reality Ads. Khả năng cao đây là hiệu ứng "kích hoạt lo ngại" — nội dung cảnh báo lừa đảo khiến user cảnh giác/lo lắng hơn nhưng chưa đi kèm đủ thông điệp trấn an/giải pháp.</p>
+    </div>
+  </div>
+  <div class="card p-6 mt-5 bg-pink-50 border-pink-100">
+    <div class="text-sm text-gray-600 italic">"Tạm kết luận (Oct W1): tỷ trọng Low trust tăng mạnh so với các đợt trước (17.6% vs 4.4% ở May), và khác với các quý trước (nơi vấn đề vận hành/ads là driver âm mạnh nhất), driver âm mạnh nhất của quý này là khoảng trống niềm tin với đối tác và độ phủ nội dung bảo mật chưa đủ — trong khi nội dung cảnh báo lừa đảo (Reality Ads) có dấu hiệu phản tác dụng nếu không đi kèm thông điệp trấn an. Đây là nguyên nhân mang tính cấu trúc nội dung/truyền thông nhiều hơn là vấn đề hạ tầng kỹ thuật thuần túy."</div>
+  </div>
+</section>
+
+<!-- ================= RECOMMENDATIONS ================= -->
+<section id="recommend" class="page hidden max-w-7xl mx-auto px-6 py-8 pb-16 scroll-mt">
+  <h2 class="text-xl font-bold text-gray-900 mb-1">9. Action Plan — Tổng hợp Recommendation</h2>
+  <p class="text-gray-500 text-sm mb-6">Ưu tiên theo mức độ ảnh hưởng (dựa trên độ lớn tác động lên Trust Index quan sát trong data) và khả năng triển khai.</p>
+  <div class="overflow-x-auto card p-2">
+    <table class="datatable w-full">
+      <thead><tr><th>#</th><th>Hành động</th><th>Vì sao (insight gốc)</th><th>Ưu tiên</th></tr></thead>
+      <tbody>
+        <tr><td class="text-gray-500">1</td><td class="text-gray-800 font-medium">Giảm tần suất / tối ưu targeting ads &amp; push notification</td><td class="text-gray-600">Nhóm thấy ads khó chịu có TI thấp nhất (1.40–2.09) trong toàn bộ driver quan sát được</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">2</td><td class="text-gray-800 font-medium">Ổn định hệ thống giờ cao điểm + rút ngắn SLA CSKH</td><td class="text-gray-600">App lag &amp; CSKH chậm là 2 nguyên nhân tiêu cực tăng nhanh nhất theo RC2; nhóm gặp vấn đề có TI chỉ 2.4–2.9/5</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">3</td><td class="text-gray-800 font-medium">Thiết kế lại cách hiển thị đối tác (logo/tên) ngay trong luồng giao dịch</td><td class="text-gray-600">"Không nhận diện được đối tác" là lý do tiêu cực sát thương nhất (TI 1.86); mockup hiện tại mới đạt Top-2 Box 33.8%</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">4</td><td class="text-gray-800 font-medium">Luôn phối hợp đa-pillar trong media plan (brand+bảo mật, đối tác, Reality Ads)</td><td class="text-gray-600">Reality Ads đơn lẻ TI=3.77 ≈ không thấy ads (3.74); kết hợp ≥2 pillar TI tăng lên 4.17–4.40</td><td><span class="pill text-amber-600">Trung bình</span></td></tr>
+        <tr><td class="text-gray-500">5</td><td class="text-gray-800 font-medium">Bổ sung số liệu/minh chứng thực tế vào mọi nội dung an toàn bảo mật</td><td class="text-gray-600">RC3: creative thiếu minh chứng chỉ 12.3% nhớ được; "ít dẫn chứng số liệu" là rào cản top ở Q4</td><td><span class="pill text-amber-600">Trung bình</span></td></tr>
+        <tr><td class="text-gray-500">6</td><td class="text-gray-800 font-medium">Chương trình chăm sóc/bù đắp tức thời cho user vừa gặp lỗi giao dịch</td><td class="text-gray-600">Early-warning cohort "Low trust" (4.4% mẫu) gắn chặt với trải nghiệm lỗi gần nhất, không phản hồi được bằng truyền thông</td><td><span class="pill text-amber-600">Trung bình</span></td></tr>
+        <tr><td class="text-gray-500">7</td><td class="text-gray-800 font-medium">Tăng tần suất sử dụng app của nhóm Light user</td><td class="text-gray-600">Hardcore TI (3.92) &gt; Light TI (3.83); gắn bó sản phẩm thật tạo niềm tin bền hơn truyền thông</td><td><span class="pill text-gray-600">Thấp–TB</span></td></tr>
+        <tr><td class="text-gray-500">8</td><td class="text-gray-800 font-medium">Chuẩn hoá cỡ mẫu &amp; phương pháp field để tracking đáng tin cậy hơn</td><td class="text-gray-600">RC1: sample bias tháng 6; Oct W1 cỡ mẫu chỉ còn n=839, rủi ro nhiễu cao khi so sánh wave-to-wave</td><td><span class="pill text-gray-600">Thấp–TB</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="text-lg font-bold text-gray-900 mt-10 mb-1">9b. Action Plan riêng cho quý gần nhất — Oct W1 (n=748)</h3>
+  <p class="text-gray-500 text-sm mb-4">Viết riêng, không gộp với bảng tổng hợp May–Aug ở trên — vì Oct W1 bộc lộ các driver khác biệt (đối tác, nội dung bảo mật, Reality Ads) so với các quý trước.</p>
+  <div class="overflow-x-auto card p-2">
+    <table class="datatable w-full">
+      <thead><tr><th>#</th><th>Hành động</th><th>Vì sao (insight Oct W1)</th><th>Ưu tiên</th></tr></thead>
+      <tbody>
+        <tr><td class="text-gray-500">1</td><td class="text-gray-800 font-medium">Thiết kế lại cách nhận diện đối tác (logo/badge rõ trong luồng giao dịch, trang giới thiệu đối tác)</td><td class="text-gray-600">"Không nhận diện được đối tác" là lý do sát thương TI nhất của quý (2.19/5, n=33) — vượt cả các lỗi vận hành</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">2</td><td class="text-gray-800 font-medium">Tăng tần suất &amp; độ phủ nội dung an toàn bảo mật (Pillar 1&amp;4) cho nhóm chưa tiếp cận đủ</td><td class="text-gray-600">"Ít thấy nội dung bảo mật" là rào cản truyền thông sát thương nhất (TI 2.21, n=69); Low trust vẫn có awareness thấp hơn High trust ở hầu hết hạng mục A12</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">3</td><td class="text-gray-800 font-medium">Rà soát &amp; bổ sung thông điệp trấn an/giải pháp đi kèm creative Reality Ads ("Xà tinh lừa đảo")</td><td class="text-gray-600">Nhóm tiếp xúc Pillar 3 có TI 3.76 — thấp hơn nhóm không tiếp xúc (3.94); đảo chiều so với hiệu ứng đa-pillar tích cực ở Aug W4</td><td><span class="pill text-pink-600">Cao</span></td></tr>
+        <tr><td class="text-gray-500">4</td><td class="text-gray-800 font-medium">Can thiệp trực tiếp (chăm sóc/bù đắp 24–48h) cho nhóm Low trust đang phình to</td><td class="text-gray-600">Low trust chiếm 17.6% mẫu Oct W1 — tăng mạnh so với May (4.4%); gắn chặt với trải nghiệm tiêu cực thực tế (A7/A8) hơn là thiếu nhận thức</td><td><span class="pill text-amber-600">Trung bình</span></td></tr>
+        <tr><td class="text-gray-500">5</td><td class="text-gray-800 font-medium">Đơn giản hoá &amp; tăng khả năng "tìm thấy" tính năng bảo mật trong app</td><td class="text-gray-600">Lý do hàng đầu khiến giải pháp bảo mật "chưa đáp ứng mong đợi" là "không nghĩ cần đến" (TI 2.22) và "quy trình phức tạp" (TI 2.76) — vấn đề nhận thức/UX hơn là chất lượng tính năng</td><td><span class="pill text-amber-600">Trung bình</span></td></tr>
+        <tr><td class="text-gray-500">6</td><td class="text-gray-800 font-medium">Cập nhật lại 3 sheet Agent_id Light/Medium/Hardcore cho khớp mẫu Oct W1</td><td class="text-gray-600">agent_id của 748 respondent Oct W1 trùng khớp = 0 với 3 sheet tagging hiện có → không thể dựng chart engagement tier cho quý này</td><td><span class="pill text-gray-600">Thấp–TB</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-xs text-gray-600 mt-8 border-t border-gray-200 pt-4">
+    Nguồn dữ liệu: "Raw data - Trust index - May26.xlsx" — các sheet Overall, clean data (May/Jun/Aug W2/Aug W4/Oct W1), Trust Index - Aug W4 / Oct W1 / Aug (W2), Agent_id Light/Medium/Hardcore. Dashboard tổng hợp bởi Claude. Số liệu phần "Segment theo mức tin tưởng", toàn bộ % multi-select và driver ranking của đợt <b>May</b> và <b>Oct W1</b> được tính trực tiếp từ raw respondent-level data (May n=2,055; Oct W1 n=748 sau khi lọc status=COMPLETED, thời gian trả lời ≥60s và loại respondent thiếu toàn bộ Q1–Q4); các số liệu đợt khác (Jun/Aug W2/Aug W4) lấy từ bảng tổng hợp đã có sẵn trong file gốc. Một số ô dữ liệu gốc bị lỗi công thức (#REF!, #DIV/0!) đã được loại khỏi dashboard hoặc thay bằng số liệu đối chiếu từ sheet chi tiết tương ứng.
+  </div>
+</section>
+
+<script>
+const palette = { pink:'#e6007e', pink2:'#ff5aa8', amber:'#d97706', green:'#059669', blue:'#2563eb', gray:'#6b7280', violet:'#7c3aed' };
+Chart.defaults.color = '#6b7280';
+Chart.defaults.borderColor = '#e5e7eb';
+Chart.defaults.font.family = "'Segoe UI', sans-serif";
+
+const waves = ['Pre-Campaign','May','Jun','Aug W2','Aug W4','Oct W1'];
+
+// collect every chart instance so we can force a resize() when its page/tab becomes visible
+// (Chart.js sizes canvases at creation time; canvases inside a display:none page get 0x0 size)
+const charts = [];
+function mkChart(el, cfg){ const c = new Chart(el, cfg); charts.push(c); return c; }
+
+// 0. KPI theo Quý — KPI target vs Actual
+mkChart(document.getElementById('chartKPIQuarter'), {
+  type:'bar',
+  data:{ labels:['Q1 2026\n(Baseline)','Q2 2026\n(May+Jun)','Q3 2026\n(Aug W2+W4)','Q4 2026\n(Oct W1*)'],
+    datasets:[
+      { label:'KPI mục tiêu', data:[4.175,4.259,4.344,4.431], backgroundColor:'#f9a8d4', borderRadius:4 },
+      { label:'Actual', data:[4.175,4.317,3.933,3.905], backgroundColor:palette.pink, borderRadius:4 },
+    ]},
+  options:{ responsive:true, scales:{ y:{ min:3.5, max:4.8, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// 1. Trust Index trend
+mkChart(document.getElementById('chartTrustTrend'), {
+  type:'line',
+  data:{ labels:waves, datasets:[
+    { label:'Trust Index (Mean 1–5)', data:[4.175,4.599,4.034,3.962,3.904,3.905], borderColor:palette.pink, backgroundColor:palette.pink, tension:.35, pointRadius:5, borderWidth:3 },
+    { label:'KPI mục tiêu (4.31)', data:[4.31,4.31,4.31,4.31,4.31,4.31], borderColor:'#4b5563', borderDash:[6,6], pointRadius:0, borderWidth:2 }
+  ]},
+  options:{ responsive:true, scales:{ y:{ min:3.5, max:5, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// 2. Pillars Q1-Q4
+mkChart(document.getElementById('chartPillars'), {
+  type:'line',
+  data:{ labels:waves, datasets:[
+    { label:'Q1 Thương hiệu', data:[4.22,4.62,3.85,3.77,3.77,3.72], borderColor:palette.pink, tension:.3, pointRadius:4 },
+    { label:'Q2 Đối tác', data:[4.23,4.64,4.07,4.01,3.92,3.93], borderColor:palette.amber, tension:.3, pointRadius:4 },
+    { label:'Q3 Đánh giá', data:[4.13,4.57,4.09,4.02,3.98,3.97], borderColor:palette.green, tension:.3, pointRadius:4 },
+    { label:'Q4 Truyền thông', data:[4.12,4.58,4.12,4.04,3.95,4.00], borderColor:palette.blue, tension:.3, pointRadius:4 },
+  ]},
+  options:{ responsive:true, scales:{ y:{ min:3.5, max:5, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// 3. Q5-Q6
+mkChart(document.getElementById('chartQ56'), {
+  type:'line',
+  data:{ labels:waves, datasets:[
+    { label:'Q5 An tâm sử dụng (Top-2 Box %)', data:[74.8,89.2,80.7,76.0,77.9,77.5], borderColor:palette.violet, backgroundColor:'rgba(167,139,250,.15)', fill:true, tension:.3, pointRadius:4 },
+    { label:'Q6 Nhiều công cụ ATBM (Top-2 Box %)', data:[75.7,87.8,79.2,75.6,73.9,76.2], borderColor:palette.blue, backgroundColor:'rgba(96,165,250,.1)', fill:true, tension:.3, pointRadius:4 },
+  ]},
+  options:{ responsive:true, scales:{ y:{ min:60, max:95, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// Segment cross-tab charts (Oct W1, n=748 — viết riêng cho quý gần nhất)
+const segLabels = ['Low trust','Mid trust','High trust'];
+const segColors = [palette.pink, palette.amber, palette.green];
+
+function segBar(elId, labels, datasetsData) {
+  return mkChart(document.getElementById(elId), {
+    type:'bar',
+    data:{ labels: labels, datasets: segLabels.map((s,i)=>({ label:s, data: datasetsData.map(row=>row[i]), backgroundColor: segColors[i] })) },
+    options:{ indexAxis:'y', responsive:true, scales:{ x:{ max:100, grid:{color:'#eef0f3'}, ticks:{callback:v=>v+'%'} }, y:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+  });
+}
+
+// A1 — gợi nhớ nội dung campaign theo segment
+segBar('chartSegA1',
+  ['AI cảnh báo rủi ro chuyển tiền','Báo cáo lừa đảo','Bộ Công An ("Tin AI?")','Xà tinh lừa đảo (AI ad)'],
+  [[49.2,48.0,55.1],[40.9,45.9,48.2],[33.3,21.3,33.6],[20.5,9.9,16.1]]
+);
+// A7 — phản hồi tiêu cực đã thấy theo segment
+segBar('chartSegA10',
+  ['App lag / lỗi hệ thống','Lỗi giao dịch / thanh toán','CSKH phản hồi chậm','Ads/push khó chịu','Hoàn tiền chậm'],
+  [[34.1,6.7,0.0],[24.2,7.3,0.4],[19.7,5.6,0.0],[20.5,4.1,0.0],[9.8,5.0,0.0]]
+);
+// A8 — mối lo ngại nhất theo segment
+segBar('chartSegA12',
+  ['Bảo mật tài khoản / sợ hack','Mất tiền / giao dịch lỗi','App lỗi lúc cần gấp','CSKH chậm khi sự cố','Hoàn tiền chậm'],
+  [[40.9,12.3,0.0],[33.3,9.1,0.4],[28.8,9.4,0.0],[18.2,4.7,0.0],[14.4,5.6,0.0]]
+);
+// A12 — nhận biết tính năng bảo mật theo segment
+segBar('chartSegA17',
+  ['AI cảnh báo rủi ro CT','Báo cáo lừa đảo','AI chặn giao dịch bất thường','AI quét mã độc','Không biết tính năng nào'],
+  [[36.4,49.4,55.1],[46.2,44.7,45.6],[18.2,24.6,37.6],[22.7,23.1,34.3],[16.7,6.7,8.4]]
+);
+
+// Trust Index theo nhóm nguyên nhân (Oct W1) — trung bình có trọng số theo n của A5/A7/A8/A11/A14
+mkChart(document.getElementById('chartUX'), {
+  type:'bar',
+  data:{ labels:['Đối tác\n(A5, n=219)','Truyền thông\n(A11, n=243)','Vận hành đã\ntrải nghiệm (A7, n=242)','Lo ngại dự\nkiến (A8, n=320)','Tính năng bảo mật\n(A14, n=237)','TOÀN MẪU\n(n=748)'],
+    datasets:[{ label:'Trust Index', data:[2.31,2.59,2.64,2.71,3.01,3.91],
+      backgroundColor:['#e6007e','#f472b6','#d97706','#f59e0b','#059669','#2563eb'] }] },
+  options:{ responsive:true, scales:{ y:{min:0,max:5, grid:{color:'#eef0f3'}}, x:{grid:{display:false}, ticks:{font:{size:9.5}}} }, plugins:{legend:{display:false}} }
+});
+
+// Top 10 lý do sát thương nhất (Oct W1 — gộp A5/A7/A11)
+mkChart(document.getElementById('chartReasons'), {
+  type:'bar',
+  data:{ labels:['Không nhận diện được đối tác (A5)','Ít nội dung bảo mật trong truyền thông (A11)','Không nghĩ cần đến tính năng bảo mật (A14)','Đối tác chưa đủ lớn/quen thuộc (A5)','Trải nghiệm lỗi thanh toán (A5)','Lo ngại bảo mật/đồng bộ dữ liệu (A5)','Trải nghiệm hoàn tiền chậm (A5)','App lag / lỗi hệ thống (A7)','Thiếu truyền thông rõ ràng hợp tác (A5)','Không nhất quán truyền thông-thực tế (A11)'],
+    datasets:[{ label:'Trust Index', data:[2.19,2.21,2.22,2.24,2.34,2.34,2.35,2.36,2.39,2.57], backgroundColor:palette.pink }] },
+  options:{ indexAxis:'y', responsive:true, scales:{ x:{min:0,max:4.5, grid:{color:'#eef0f3'}}, y:{grid:{display:false}, ticks:{font:{size:10}}} }, plugins:{legend:{display:false}} }
+});
+
+// Pillar exposure (Oct W1) — tự tính từ A1, viết riêng cho quý gần nhất
+mkChart(document.getElementById('chartPillarExposure'), {
+  type:'bar',
+  data:{ labels:['Chỉ P3\n(n=6)','Không thấy\ngì (n=7)','Cả 3 Pillar\n(n=83)','Chỉ P1&4\n(n=510)','Chỉ P2\n(n=48)','P1&4 + P2\n(n=78)','P1&4 + P3\n(n=16)'],
+    datasets:[{ label:'Trust Index', data:[3.08,3.39,3.73,3.93,3.99,3.99,4.13], backgroundColor:['#e6007e','#f9a8d4','#d97706','#2563eb','#059669','#059669','#047857'] }] },
+  options:{ responsive:true, scales:{ y:{min:2.8,max:4.3, grid:{color:'#eef0f3'}}, x:{grid:{display:false}, ticks:{font:{size:9.5}}} }, plugins:{legend:{display:false}} }
+});
+
+// ---- Page switcher (each section is its own "page", only one visible at a time) ----
+const pages = document.querySelectorAll('.page');
+const navLinks = document.querySelectorAll('.nav-link');
+
+function showPage(id){
+  if (!document.getElementById(id)) id = 'overview';
+  pages.forEach(p => p.classList.toggle('hidden', p.id !== id));
+  navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('data-target') === id));
+  window.scrollTo({ top: 0, behavior: 'instant' });
+  // charts created while their page was display:none get sized 0x0 — force a resize
+  // now that the target page's layout is live so canvases report real dimensions.
+  requestAnimationFrame(() => charts.forEach(c => c.resize()));
+}
+
+navLinks.forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    const id = a.getAttribute('data-target');
+    history.replaceState(null, '', '#' + id);
+    showPage(id);
+  });
+});
+
+const initialId = (location.hash || '#overview').slice(1);
+showPage(initialId);
+</script>
+</body>
+</html>
