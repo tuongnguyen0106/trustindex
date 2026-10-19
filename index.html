@@ -338,22 +338,69 @@
     ⚠️ <b>Lưu ý quý gần nhất:</b> tỷ trọng Low trust (17.6%) cao hơn rõ rệt so với May (4.4%) — cơ cấu niềm tin của Oct W1 đang lệch về phía "dao động/báo động" nhiều hơn các đợt trước, cần đọc các chart dưới trong bối cảnh này.
   </div>
 
+  <div class="card p-6 mb-5">
+    <h4 class="text-gray-900 font-semibold mb-1">Trend cơ cấu Low / Mid / High qua 5 đợt (May → Oct W1)</h4>
+    <p class="text-xs text-gray-500 mb-3">Tự tính lại cùng 1 phương pháp (trung bình Q1–Q4, ngưỡng Low≤3 / Mid 3–4.5 / High≥4.5) cho từng đợt từ raw data gốc, để so sánh "táo với táo" xuyên suốt tracker.</p>
+    <canvas id="chartSegTrend"></canvas>
+    <p class="text-xs text-gray-500 mt-3">n theo đợt: May 2,055 · Jun 2,268 · Aug W2 2,457 · Aug W4 1,326 · Oct W1 748.</p>
+  </div>
+
+  <div class="card p-4 mb-5 bg-amber-50 border-amber-100 text-sm text-gray-700">
+    📌 <b>Đọc trend:</b> tỷ trọng Low trust nhảy vọt từ 4.4% (May) lên 14.5% (Jun) rồi dao động quanh 17–19% suốt Aug W2 → Aug W4 → Oct W1 — cho thấy đây <b>không phải biến động nhất thời của riêng Oct W1</b>, mà là một mặt bằng mới đã hình thành từ tháng 6 và chưa được kéo xuống trở lại kể từ đó. High trust cũng giảm tương ứng từ 74.0% xuống quanh 36–38% và giữ nguyên ở mức này suốt 4 đợt gần nhất.
+  </div>
+
   <div class="grid lg:grid-cols-2 gap-5">
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-3">Gợi nhớ nội dung campaign theo segment (A1, % chọn)</h4>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Gợi nhớ nội dung campaign theo segment (A1, % chọn)</h4>
+        <div id="segA1WaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">4 nội dung campaign có mặt xuyên suốt 3 đợt gần nhất (Jun → Aug W2 → Oct W1) — bấm để xem từng đợt. Aug W4 không đưa vào vì bộ creative khác hoàn toàn, không so sánh được.</p>
       <canvas id="chartSegA1"></canvas>
+      <p id="segA1WaveN" class="text-xs text-gray-500 mt-3"></p>
     </div>
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-3">Phản hồi tiêu cực đã thấy, theo segment (A7, % chọn)</h4>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Phản hồi tiêu cực đã thấy, theo segment (A7, % chọn)</h4>
+        <div id="segA10WaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">Aug W4 không có câu hỏi tương đương nên không đưa vào.</p>
       <canvas id="chartSegA10"></canvas>
+      <p id="segA10WaveN" class="text-xs text-gray-500 mt-3"></p>
     </div>
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-3">Mối lo ngại nhất, theo segment (A8, % chọn)</h4>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Mối lo ngại nhất, theo segment (A8, % chọn)</h4>
+        <div id="segA12WaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">Aug W4 không có câu hỏi tương đương nên không đưa vào.</p>
       <canvas id="chartSegA12"></canvas>
+      <p id="segA12WaveN" class="text-xs text-gray-500 mt-3"></p>
     </div>
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-3">Nhận biết tính năng bảo mật, theo segment (A12, % chọn)</h4>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Nhận biết tính năng bảo mật, theo segment (A12, % chọn)</h4>
+        <div id="segA17WaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">Aug W4 không có câu hỏi tương đương nên không đưa vào.</p>
       <canvas id="chartSegA17"></canvas>
+      <p id="segA17WaveN" class="text-xs text-gray-500 mt-3"></p>
     </div>
   </div>
 
@@ -384,21 +431,57 @@
 
   <div class="grid lg:grid-cols-2 gap-5">
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-1">Top 10 lý do "sát thương" Trust Index nhất (Oct W1)</h4>
-      <p class="text-xs text-gray-500 mb-3">Gộp từ A5 (rào cản đối tác), A7 (phản hồi tiêu cực đã thấy), A11 (truyền thông chưa đáng tin). Xếp từ TI thấp nhất.</p>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Top 10 lý do "sát thương" Trust Index nhất</h4>
+        <div id="reasonsWaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p class="text-xs text-gray-500 mb-3">Gộp từ rào cản đối tác + phản hồi tiêu cực đã thấy + truyền thông chưa đáng tin (mỗi đợt dùng đúng bộ câu hỏi tương đương của đợt đó). Xếp từ TI thấp nhất. Aug W4 không đưa vào vì bộ câu hỏi khác cấu trúc.</p>
       <canvas id="chartReasons"></canvas>
     </div>
     <div class="card p-6">
-      <h4 class="text-gray-900 font-semibold mb-1">Trust Index theo nhóm nguyên nhân (Oct W1)</h4>
-      <p class="text-xs text-gray-500 mb-3">Trung bình có trọng số (theo n) của từng nhóm chủ đề A5/A7/A8/A11/A14, so với TI toàn mẫu 3.91.</p>
+      <div class="flex items-center justify-between flex-wrap gap-2 mb-1">
+        <h4 class="text-gray-900 font-semibold">Trust Index theo nhóm nguyên nhân</h4>
+        <div id="uxWaveSwitch" class="flex gap-1 bg-gray-100 rounded-lg p-1 text-xs font-medium">
+          <button type="button" data-wave="oct" class="seg-wave-btn px-2.5 py-1 rounded-md">Oct W1</button>
+          <button type="button" data-wave="aw2" class="seg-wave-btn px-2.5 py-1 rounded-md">Aug W2</button>
+          <button type="button" data-wave="jun" class="seg-wave-btn px-2.5 py-1 rounded-md">Jun</button>
+        </div>
+      </div>
+      <p id="uxWaveDesc" class="text-xs text-gray-500 mb-3"></p>
       <canvas id="chartUX"></canvas>
+    </div>
+  </div>
+
+  <div class="card p-6 mt-5">
+    <h4 class="text-gray-900 font-semibold mb-1">Trend driver theo nhóm nguyên nhân, qua 4 đợt (Jun → Oct W1)</h4>
+    <p class="text-xs text-gray-500 mb-3">Tự tính lại cùng phương pháp (TI trung bình có trọng số theo n) cho 3 nhóm nguyên nhân có câu hỏi tương đương xuyên suốt 4 đợt gần nhất, để thấy driver nào dai dẳng và driver nào đã cải thiện.</p>
+    <canvas id="chartDriverTrend"></canvas>
+  </div>
+
+  <div class="grid lg:grid-cols-2 gap-5 mt-5">
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-1">Trend 2 lý do cụ thể dai dẳng nhất</h4>
+      <p class="text-xs text-gray-500 mb-3">"Không nhận diện được đối tác" &amp; "Ít nội dung bảo mật trong truyền thông" — 2 lý do luôn nằm trong top sát thương nhất ở mọi đợt.</p>
+      <canvas id="chartReasonTrend"></canvas>
+    </div>
+    <div class="card p-6">
+      <h4 class="text-gray-900 font-semibold mb-2">📌 Đọc trend driver</h4>
+      <ul class="text-sm text-gray-600 space-y-2 list-disc pl-4">
+        <li><b class="text-pink-600">"Đối tác" là nhóm nguyên nhân tệ nhất ở CẢ 4 đợt gần nhất</b> (Jun 2.65 → Aug W2 2.32 → Aug W4 2.32 → Oct 2.31) — xấu đi mạnh từ Jun sang Aug rồi đi ngang, cho thấy đây là vấn đề cấu trúc chưa từng được giải quyết dứt điểm, không phải nhiễu của riêng 1 đợt.</li>
+        <li>Lý do "không nhận diện được đối tác" dao động 1.86–2.34 suốt 4 đợt — luôn là 1 trong 2 lý do sát thương nhất, kể cả khi Trust Index tổng thể đổi chiều.</li>
+        <li>"Tính năng bảo mật" là nhóm duy nhất có xu hướng rõ: giảm liên tục Jun→Aug W4 (3.30→3.00→2.62) rồi hồi phục một phần ở Oct (3.01) — trùng thời điểm Oct W1 có nhiều nội dung security-feature (Pillar 1&amp;4) hơn.</li>
+      </ul>
     </div>
   </div>
 
   <div class="grid lg:grid-cols-2 gap-5 mt-5">
     <div class="card p-6">
       <h4 class="text-gray-900 font-semibold mb-1">Trust Index theo pillar nội dung đã tiếp xúc (A1, Oct W1)</h4>
-      <p class="text-xs text-gray-500 mb-3">P1&amp;4 = nội dung thương hiệu/tính năng bảo mật · P2 = MoMo đồng hành Bộ Công An · P3 = Reality Ads ("Xà tinh lừa đảo").</p>
+      <p class="text-xs text-gray-500 mb-3">P1&amp;4 = nội dung thương hiệu/tính năng bảo mật · P2 = MoMo đồng hành Bộ Công An · P3 = Reality Ads ("Xà tinh lừa đảo"). <i>Không có bộ chọn đợt ở chart này vì mỗi đợt dùng một bộ creative/pillar hoàn toàn khác nhau (xem chart A1 ở trang Segments) — các combo pillar của Oct W1 không tồn tại ở Jun/Aug W2/Aug W4 nên không thể so sánh xuyên suốt.</i></p>
       <canvas id="chartPillarExposure"></canvas>
     </div>
     <div class="card p-6">
@@ -436,19 +519,24 @@
   <div class="grid md:grid-cols-3 gap-5">
     <div class="card p-6 border-t-4 border-pink-600">
       <div class="text-pink-600 font-bold mb-1">RC1 · Khoảng trống nhận diện đối tác (Partner trust gap)</div>
-      <p class="text-sm text-gray-600">Nhóm chọn "không nhận diện được đối tác" (n=33) có Trust Index chỉ <b class="text-gray-800">2.19/5</b> — lý do sát thương nhất trong toàn bộ Oct W1, vượt qua cả các lỗi vận hành như app lag (2.36) hay lỗi giao dịch (2.63). Kết hợp với "đối tác chưa đủ lớn/quen thuộc" (TI 2.24, n=20), nhóm nguyên nhân "đối tác" có TI trung bình có trọng số thấp nhất trong 5 nhóm driver (2.31). → Gap niềm tin của quý này nằm nhiều ở tầng <b class="text-gray-800">nhận diện/thương hiệu đối tác</b> hơn là trải nghiệm kỹ thuật thuần túy.</p>
+      <p class="text-sm text-gray-600">Nhóm chọn "không nhận diện được đối tác" (n=33) có Trust Index chỉ <b class="text-gray-800">2.19/5</b> — lý do sát thương nhất trong toàn bộ Oct W1, vượt qua cả các lỗi vận hành như app lag (2.36) hay lỗi giao dịch (2.63). Kết hợp với "đối tác chưa đủ lớn/quen thuộc" (TI 2.24, n=20), nhóm nguyên nhân "đối tác" có TI trung bình có trọng số thấp nhất trong 5 nhóm driver (2.31). → Gap niềm tin của quý này nằm nhiều ở tầng <b class="text-gray-800">nhận diện/thương hiệu đối tác</b> hơn là trải nghiệm kỹ thuật thuần túy. <b class="text-pink-600">Đây không phải phát hiện riêng của Oct W1</b>: nhóm "đối tác" đã là nhóm driver tệ nhất ở cả 4 đợt gần nhất (Jun 2.65 → Aug W2 2.32 → Aug W4 2.32 → Oct 2.31), chưa từng cải thiện.</p>
     </div>
     <div class="card p-6 border-t-4 border-pink-600">
       <div class="text-pink-600 font-bold mb-1">RC2 · Độ phủ nội dung bảo mật chưa lấp đầy</div>
-      <p class="text-sm text-gray-600">"Ít thấy nội dung về bảo mật, an toàn tài chính" (n=69) là lý do sát thương nhất khiến truyền thông MoMo "chưa đáng tin" (TI 2.21) — cao hơn cả "không nhất quán truyền thông-thực tế" (TI 2.57). Ở segment, nhóm Low trust (17.6% mẫu) vẫn có mức độ nhận biết tính năng bảo mật (A12) thấp hơn High trust ở hầu hết hạng mục (ví dụ "AI cảnh báo rủi ro chuyển tiền": 36.4% vs 55.1%). → Dù đã chạy nhiều pillar nội dung, tần suất/độ phủ với một bộ phận user vẫn chưa đủ.</p>
+      <p class="text-sm text-gray-600">"Ít thấy nội dung về bảo mật, an toàn tài chính" (n=69) là lý do sát thương nhất khiến truyền thông MoMo "chưa đáng tin" (TI 2.21) — cao hơn cả "không nhất quán truyền thông-thực tế" (TI 2.57). Ở segment, nhóm Low trust (17.6% mẫu) vẫn có mức độ nhận biết tính năng bảo mật (A12) thấp hơn High trust ở hầu hết hạng mục (ví dụ "AI cảnh báo rủi ro chuyển tiền": 36.4% vs 55.1%). → Dù đã chạy nhiều pillar nội dung, tần suất/độ phủ với một bộ phận user vẫn chưa đủ. Nhóm "tính năng bảo mật" là nhóm driver duy nhất có xu hướng rõ qua các đợt: giảm liên tục Jun→Aug W4 (3.30→3.00→2.62) rồi hồi phục một phần ở Oct (3.01) — cần thêm 1 đợt nữa để xác nhận đây là đảo chiều thật hay dao động ngắn hạn.</p>
     </div>
     <div class="card p-6 border-t-4 border-pink-600">
       <div class="text-pink-600 font-bold mb-1">RC3 · Reality Ads đảo chiều hiệu ứng so với Aug W4</div>
       <p class="text-sm text-gray-600">Nhóm tiếp xúc Pillar 3 "Xà tinh lừa đảo" có TI 3.76 — <b class="text-gray-800">thấp hơn</b> nhóm không tiếp xúc (3.94); nhóm tiếp xúc cả 3 pillar cũng chỉ đạt 3.73, thấp hơn nhóm chỉ thấy P1&amp;4 (3.93). Ở Aug W4, kết hợp đa-pillar luôn kéo TI lên (4.17–4.40); ở Oct W1 xu hướng này đảo ngược với Reality Ads. Khả năng cao đây là hiệu ứng "kích hoạt lo ngại" — nội dung cảnh báo lừa đảo khiến user cảnh giác/lo lắng hơn nhưng chưa đi kèm đủ thông điệp trấn an/giải pháp.</p>
     </div>
   </div>
+  <div class="card p-6 mt-5">
+    <h4 class="text-gray-900 font-semibold mb-1">RC được xác nhận là vấn đề cấu trúc — không phải biến động riêng của Oct W1</h4>
+    <p class="text-xs text-gray-500 mb-3">So lại TI của nhóm "đối tác" (RC1) và lý do "không nhận diện được đối tác" qua 4 đợt gần nhất: cả hai đều nằm ở đáy bảng driver xuyên suốt, không riêng Oct W1.</p>
+    <canvas id="chartRCTrend"></canvas>
+  </div>
   <div class="card p-6 mt-5 bg-pink-50 border-pink-100">
-    <div class="text-sm text-gray-600 italic">"Tạm kết luận (Oct W1): tỷ trọng Low trust tăng mạnh so với các đợt trước (17.6% vs 4.4% ở May), và khác với các quý trước (nơi vấn đề vận hành/ads là driver âm mạnh nhất), driver âm mạnh nhất của quý này là khoảng trống niềm tin với đối tác và độ phủ nội dung bảo mật chưa đủ — trong khi nội dung cảnh báo lừa đảo (Reality Ads) có dấu hiệu phản tác dụng nếu không đi kèm thông điệp trấn an. Đây là nguyên nhân mang tính cấu trúc nội dung/truyền thông nhiều hơn là vấn đề hạ tầng kỹ thuật thuần túy."</div>
+    <div class="text-sm text-gray-600 italic">"Tạm kết luận (Oct W1): tỷ trọng Low trust tăng mạnh so với các đợt trước (17.6% vs 4.4% ở May) nhưng đã ổn định quanh 17–19% suốt 3 đợt gần nhất (Aug W2 → Aug W4 → Oct W1) — đây là một mức nền mới, không phải cú sốc nhất thời. Khác với các quý đầu (nơi vấn đề vận hành/ads là driver âm mạnh nhất), driver âm mạnh nhất kể từ Jun đến nay luôn là khoảng trống niềm tin với đối tác, với độ phủ nội dung bảo mật là driver thứ 2 dai dẳng — trong khi nội dung cảnh báo lừa đảo (Reality Ads) có dấu hiệu phản tác dụng ở riêng Oct W1 nếu không đi kèm thông điệp trấn an. Đây là nguyên nhân mang tính cấu trúc nội dung/truyền thông, tồn tại nhiều đợt, nhiều hơn là vấn đề hạ tầng kỹ thuật thuần túy hay biến động đo lường của một quý."</div>
   </div>
 </section>
 
@@ -486,6 +574,15 @@
         <tr><td class="text-gray-500">6</td><td class="text-gray-800 font-medium">Cập nhật lại 3 sheet Agent_id Light/Medium/Hardcore cho khớp mẫu Oct W1</td><td class="text-gray-600">agent_id của 748 respondent Oct W1 trùng khớp = 0 với 3 sheet tagging hiện có → không thể dựng chart engagement tier cho quý này</td><td><span class="pill text-gray-600">Thấp–TB</span></td></tr>
       </tbody>
     </table>
+  </div>
+
+  <div class="card p-6 mt-5 bg-amber-50 border-amber-100">
+    <h4 class="text-gray-900 font-semibold mb-2">📌 Điều chỉnh ưu tiên dựa trên trend 4 đợt (Jun → Oct W1)</h4>
+    <ul class="text-sm text-gray-700 space-y-2 list-disc pl-4">
+      <li><b class="text-pink-600">Nâng hành động #1 (nhận diện đối tác) lên ưu tiên cao nhất, dài hạn</b> — nhóm driver "đối tác" không phải vấn đề riêng của Oct W1 mà đã là nhóm driver tệ nhất liên tục 4 đợt (Jun 2.65 → Aug W2 2.32 → Aug W4 2.32 → Oct 2.31), chưa từng cải thiện dù đã qua nhiều cycle truyền thông. Cần một dự án riêng (không chỉ 1 chiến dịch) về nhận diện/thương hiệu đối tác, có mốc đo lường qua từng quý.</li>
+      <li><b class="text-gray-800">Theo dõi tiếp "Tính năng bảo mật"</b> — đây là nhóm driver duy nhất có tín hiệu đảo chiều (giảm liên tục Jun→Aug W4: 3.30→3.00→2.62, rồi hồi phục ở Oct: 3.01). Nếu đợt tới (Nov/Dec) tiếp tục tăng → xác nhận các hành động #2/#5 đang hiệu quả; nếu giảm lại → ưu tiên lại thành "Cao".</li>
+      <li><b class="text-gray-800">Low trust đã thành một mức nền mới (~17–19%), không phải cú sốc 1 đợt</b> — hành động #4 (can thiệp 24–48h cho nhóm Low trust) nên chuyển từ phản ứng tức thời sang một quy trình vận hành thường trực, vì nhóm này đã ổn định ở mức này suốt 3 đợt liên tiếp (Aug W2 17.0% → Aug W4 19.4% → Oct W1 17.6%).</li>
+    </ul>
   </div>
 
   <div class="text-xs text-gray-600 mt-8 border-t border-gray-200 pt-4">
@@ -561,43 +658,192 @@ function segBar(elId, labels, datasetsData) {
   });
 }
 
-// A1 — gợi nhớ nội dung campaign theo segment
-segBar('chartSegA1',
-  ['AI cảnh báo rủi ro chuyển tiền','Báo cáo lừa đảo','Bộ Công An ("Tin AI?")','Xà tinh lừa đảo (AI ad)'],
-  [[49.2,48.0,55.1],[40.9,45.9,48.2],[33.3,21.3,33.6],[20.5,9.9,16.1]]
-);
-// A7 — phản hồi tiêu cực đã thấy theo segment
-segBar('chartSegA10',
-  ['App lag / lỗi hệ thống','Lỗi giao dịch / thanh toán','CSKH phản hồi chậm','Ads/push khó chịu','Hoàn tiền chậm'],
-  [[34.1,6.7,0.0],[24.2,7.3,0.4],[19.7,5.6,0.0],[20.5,4.1,0.0],[9.8,5.0,0.0]]
-);
-// A8 — mối lo ngại nhất theo segment
-segBar('chartSegA12',
-  ['Bảo mật tài khoản / sợ hack','Mất tiền / giao dịch lỗi','App lỗi lúc cần gấp','CSKH chậm khi sự cố','Hoàn tiền chậm'],
-  [[40.9,12.3,0.0],[33.3,9.1,0.4],[28.8,9.4,0.0],[18.2,4.7,0.0],[14.4,5.6,0.0]]
-);
-// A12 — nhận biết tính năng bảo mật theo segment
-segBar('chartSegA17',
-  ['AI cảnh báo rủi ro CT','Báo cáo lừa đảo','AI chặn giao dịch bất thường','AI quét mã độc','Không biết tính năng nào'],
-  [[36.4,49.4,55.1],[46.2,44.7,45.6],[18.2,24.6,37.6],[22.7,23.1,34.3],[16.7,6.7,8.4]]
-);
+// A1 — gợi nhớ nội dung campaign theo segment, có thể đổi qua lại giữa 3 đợt (Oct W1 / Aug W2 / Jun)
+// Chỉ 4 nội dung có câu hỏi tương đương xuyên suốt 3 đợt này; Aug W4 dùng bộ creative hoàn toàn khác nên không đưa vào.
+const segA1Labels = ['AI cảnh báo rủi ro chuyển tiền','Báo cáo lừa đảo','Bộ Công An ("Tin AI?")','Xà tinh lừa đảo (AI ad)'];
+const segA1Waves = {
+  oct: { name:'Oct W1', n:'748 (Low 132 · Mid 342 · High 274)', data:[[49.2,48.0,55.1],[40.9,45.9,48.2],[33.3,21.3,33.6],[20.5,9.9,16.1]] },
+  aw2: { name:'Aug W2', n:'2,457 (Low 418 · Mid 1,095 · High 944)', data:[[36.6,47.7,54.9],[30.9,46.0,49.0],[20.3,22.2,32.2],[12.9,10.8,15.8]] },
+  jun: { name:'Jun',    n:'2,268 (Low 329 · Mid 1,077 · High 862)', data:[[31.9,42.0,43.2],[26.7,31.9,41.9],[17.0,18.9,24.0],[10.3,8.5,13.6]] },
+};
+const chartSegA1Instance = segBar('chartSegA1', segA1Labels, segA1Waves.oct.data);
 
-// Trust Index theo nhóm nguyên nhân (Oct W1) — trung bình có trọng số theo n của A5/A7/A8/A11/A14
-mkChart(document.getElementById('chartUX'), {
+function setSegA1Wave(key) {
+  const w = segA1Waves[key];
+  chartSegA1Instance.data.datasets.forEach((ds,i) => { ds.data = w.data.map(row=>row[i]); });
+  chartSegA1Instance.update();
+  document.getElementById('segA1WaveN').textContent = 'n = ' + w.n;
+  document.querySelectorAll('#segA1WaveSwitch .seg-wave-btn').forEach(btn => {
+    const active = btn.dataset.wave === key;
+    btn.classList.toggle('bg-white', active);
+    btn.classList.toggle('shadow-sm', active);
+    btn.classList.toggle('text-pink-600', active);
+    btn.classList.toggle('text-gray-500', !active);
+  });
+}
+document.querySelectorAll('#segA1WaveSwitch .seg-wave-btn').forEach(btn => {
+  btn.addEventListener('click', () => setSegA1Wave(btn.dataset.wave));
+});
+setSegA1Wave('oct');
+
+// Generic helper: wire up a button-group's active-state styling + click handler
+function bindWaveSwitch(containerId, applyFn, defaultKey) {
+  function select(key) {
+    applyFn(key);
+    document.querySelectorAll('#'+containerId+' .seg-wave-btn').forEach(btn => {
+      const active = btn.dataset.wave === key;
+      btn.classList.toggle('bg-white', active);
+      btn.classList.toggle('shadow-sm', active);
+      btn.classList.toggle('text-pink-600', active);
+      btn.classList.toggle('text-gray-500', !active);
+    });
+  }
+  document.querySelectorAll('#'+containerId+' .seg-wave-btn').forEach(btn => {
+    btn.addEventListener('click', () => select(btn.dataset.wave));
+  });
+  select(defaultKey);
+}
+
+// A7 — phản hồi tiêu cực đã thấy theo segment, đổi qua lại Oct W1 / Aug W2 / Jun (Aug W4 không có câu hỏi tương đương)
+const segA10Labels = ['App lag / lỗi hệ thống','Lỗi giao dịch / thanh toán','CSKH phản hồi chậm','Ads/push khó chịu','Hoàn tiền chậm'];
+const segA10Waves = {
+  oct: { n:'748 (Low 132 · Mid 342 · High 274)', data:[[34.1,6.7,0.0],[24.2,7.3,0.4],[19.7,5.6,0.0],[20.5,4.1,0.0],[9.8,5.0,0.0]] },
+  aw2: { n:'2,457 (Low 418 · Mid 1,095 · High 944)', data:[[30.4,7.3,0.0],[14.1,5.6,0.0],[21.5,5.4,0.0],[31.3,4.3,0.0],[10.8,3.6,0.0]] },
+  jun: { n:'2,268 (Low 329 · Mid 1,077 · High 862)', data:[[34.0,7.5,0.2],[13.1,4.1,0.1],[24.6,5.6,0.1],[27.1,4.0,0.0],[11.2,2.8,0.0]] },
+};
+const chartSegA10Instance = segBar('chartSegA10', segA10Labels, segA10Waves.oct.data);
+bindWaveSwitch('segA10WaveSwitch', key => {
+  const w = segA10Waves[key];
+  chartSegA10Instance.data.datasets.forEach((ds,i) => { ds.data = w.data.map(row=>row[i]); });
+  chartSegA10Instance.update();
+  document.getElementById('segA10WaveN').textContent = 'n = ' + w.n;
+}, 'oct');
+
+// A8 — mối lo ngại nhất theo segment, đổi qua lại Oct W1 / Aug W2 / Jun
+const segA12Labels = ['Bảo mật tài khoản / sợ hack','Mất tiền / giao dịch lỗi','App lỗi lúc cần gấp','CSKH chậm khi sự cố','Hoàn tiền chậm'];
+const segA12Waves = {
+  oct: { n:'748 (Low 132 · Mid 342 · High 274)', data:[[40.9,12.3,0.0],[33.3,9.1,0.4],[28.8,9.4,0.0],[18.2,4.7,0.0],[14.4,5.6,0.0]] },
+  aw2: { n:'2,457 (Low 418 · Mid 1,095 · High 944)', data:[[33.3,8.3,0.0],[35.9,8.1,0.0],[20.6,6.6,0.0],[23.0,5.2,0.0],[12.7,4.9,0.0]] },
+  jun: { n:'2,268 (Low 329 · Mid 1,077 · High 862)', data:[[33.7,6.9,0.1],[29.8,6.6,0.0],[24.9,7.1,0.2],[24.6,4.3,0.0],[12.2,2.8,0.1]] },
+};
+const chartSegA12Instance = segBar('chartSegA12', segA12Labels, segA12Waves.oct.data);
+bindWaveSwitch('segA12WaveSwitch', key => {
+  const w = segA12Waves[key];
+  chartSegA12Instance.data.datasets.forEach((ds,i) => { ds.data = w.data.map(row=>row[i]); });
+  chartSegA12Instance.update();
+  document.getElementById('segA12WaveN').textContent = 'n = ' + w.n;
+}, 'oct');
+
+// A12 — nhận biết tính năng bảo mật theo segment, đổi qua lại Oct W1 / Aug W2 / Jun
+const segA17Labels = ['AI cảnh báo rủi ro CT','Báo cáo lừa đảo','AI chặn giao dịch bất thường','AI quét mã độc','Không biết tính năng nào'];
+const segA17Waves = {
+  oct: { n:'748 (Low 132 · Mid 342 · High 274)', data:[[36.4,49.4,55.1],[46.2,44.7,45.6],[18.2,24.6,37.6],[22.7,23.1,34.3],[16.7,6.7,8.4]] },
+  aw2: { n:'2,457 (Low 418 · Mid 1,095 · High 944)', data:[[36.4,50.1,55.9],[40.7,42.6,50.7],[16.5,25.8,38.8],[17.7,24.6,35.4],[8.1,8.1,4.9]] },
+  jun: { n:'2,268 (Low 329 · Mid 1,077 · High 862)', data:[[31.9,45.7,47.7],[33.7,32.2,43.3],[12.8,22.4,29.9],[13.1,20.2,28.4],[13.7,11.9,7.2]] },
+};
+const chartSegA17Instance = segBar('chartSegA17', segA17Labels, segA17Waves.oct.data);
+bindWaveSwitch('segA17WaveSwitch', key => {
+  const w = segA17Waves[key];
+  chartSegA17Instance.data.datasets.forEach((ds,i) => { ds.data = w.data.map(row=>row[i]); });
+  chartSegA17Instance.update();
+  document.getElementById('segA17WaveN').textContent = 'n = ' + w.n;
+}, 'oct');
+
+// Trend Low/Mid/High qua 5 đợt — tự tính lại cùng phương pháp (Low≤3 / Mid 3–4.5 / High≥4.5) cho từng đợt
+mkChart(document.getElementById('chartSegTrend'), {
+  type:'line',
+  data:{ labels:['May\n(n=2,055)','Jun\n(n=2,268)','Aug W2\n(n=2,457)','Aug W4\n(n=1,326)','Oct W1\n(n=748)'],
+    datasets:[
+      { label:'Low trust (≤3)', data:[4.4,14.5,17.0,19.4,17.6], borderColor:palette.pink, backgroundColor:palette.pink, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'Mid trust (3–4.5)', data:[21.6,47.5,44.6,43.4,45.7], borderColor:palette.amber, backgroundColor:palette.amber, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'High trust (≥4.5)', data:[74.0,38.0,38.4,37.3,36.6], borderColor:palette.green, backgroundColor:palette.green, tension:.3, pointRadius:5, borderWidth:3 },
+    ]},
+  options:{ responsive:true, scales:{ y:{ min:0, max:80, grid:{color:'#eef0f3'}, ticks:{callback:v=>v+'%'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// Trust Index theo nhóm nguyên nhân — trung bình có trọng số theo n, đổi qua lại Oct W1 / Aug W2 / Jun
+// (Aug W4 không có bộ câu hỏi A5/A7/A8/A11/A14 tương đương nên không đưa vào — xem ghi chú ở chart Driver Trend)
+const uxWaves = {
+  oct: { desc:'Trung bình có trọng số (theo n) của từng nhóm chủ đề A5/A7/A8/A11/A14, so với TI toàn mẫu 3.91.',
+    labels:['Đối tác\n(A5, n=219)','Truyền thông\n(A11, n=243)','Vận hành đã\ntrải nghiệm (A7, n=242)','Lo ngại dự\nkiến (A8, n=320)','Tính năng bảo mật\n(A14, n=237)','TOÀN MẪU\n(n=748)'],
+    data:[2.31,2.59,2.64,2.71,3.01,3.91] },
+  aw2: { desc:'Trung bình có trọng số (theo n) của từng nhóm chủ đề A5/A7/A8/A11/A14, so với TI toàn mẫu 3.96.',
+    labels:['Đối tác\n(A5, n=688)','Truyền thông\n(A11, n=643)','Vận hành đã\ntrải nghiệm (A7, n=738)','Lo ngại dự\nkiến (A8, n=887)','Tính năng bảo mật\n(A14, n=688)','TOÀN MẪU\n(n=2,457)'],
+    data:[2.32,2.57,2.58,2.62,3.00,3.96] },
+  jun: { desc:'Trung bình có trọng số (theo n) của từng nhóm chủ đề A7/A12/A9/A10/A15, so với TI toàn mẫu 4.04.',
+    labels:['Đối tác\n(A7, n=514)','Truyền thông\n(A12, n=555)','Vận hành đã\ntrải nghiệm (A9, n=624)','Lo ngại dự\nkiến (A10, n=713)','Tính năng bảo mật\n(A15, n=638)','TOÀN MẪU\n(n=2,268)'],
+    data:[2.65,2.83,2.82,2.84,3.30,4.04] },
+};
+const chartUXInstance = mkChart(document.getElementById('chartUX'), {
   type:'bar',
-  data:{ labels:['Đối tác\n(A5, n=219)','Truyền thông\n(A11, n=243)','Vận hành đã\ntrải nghiệm (A7, n=242)','Lo ngại dự\nkiến (A8, n=320)','Tính năng bảo mật\n(A14, n=237)','TOÀN MẪU\n(n=748)'],
-    datasets:[{ label:'Trust Index', data:[2.31,2.59,2.64,2.71,3.01,3.91],
+  data:{ labels: uxWaves.oct.labels,
+    datasets:[{ label:'Trust Index', data: uxWaves.oct.data,
       backgroundColor:['#e6007e','#f472b6','#d97706','#f59e0b','#059669','#2563eb'] }] },
   options:{ responsive:true, scales:{ y:{min:0,max:5, grid:{color:'#eef0f3'}}, x:{grid:{display:false}, ticks:{font:{size:9.5}}} }, plugins:{legend:{display:false}} }
 });
+bindWaveSwitch('uxWaveSwitch', key => {
+  const w = uxWaves[key];
+  chartUXInstance.data.labels = w.labels;
+  chartUXInstance.data.datasets[0].data = w.data;
+  chartUXInstance.update();
+  document.getElementById('uxWaveDesc').textContent = w.desc;
+}, 'oct');
 
-// Top 10 lý do sát thương nhất (Oct W1 — gộp A5/A7/A11)
-mkChart(document.getElementById('chartReasons'), {
+// Trend driver theo nhóm nguyên nhân, 4 đợt (Jun/Aug W2/Aug W4/Oct W1) — chỉ 3 nhóm có câu hỏi tương đương xuyên suốt
+mkChart(document.getElementById('chartDriverTrend'), {
+  type:'line',
+  data:{ labels:['Jun','Aug W2','Aug W4','Oct W1'],
+    datasets:[
+      { label:'Đối tác', data:[2.65,2.32,2.32,2.31], borderColor:palette.pink, backgroundColor:palette.pink, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'Truyền thông', data:[2.83,2.56,2.49,2.59], borderColor:palette.blue, backgroundColor:palette.blue, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'Tính năng bảo mật', data:[3.30,3.00,2.62,3.01], borderColor:palette.green, backgroundColor:palette.green, tension:.3, pointRadius:5, borderWidth:3 },
+    ]},
+  options:{ responsive:true, scales:{ y:{ min:2, max:3.6, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// Trend 2 lý do cụ thể dai dẳng nhất, qua 4 đợt
+mkChart(document.getElementById('chartReasonTrend'), {
+  type:'line',
+  data:{ labels:['Jun','Aug W2','Aug W4','Oct W1'],
+    datasets:[
+      { label:'Không nhận diện được đối tác', data:[2.34,1.86,2.00,2.19], borderColor:palette.pink, backgroundColor:palette.pink, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'Ít nội dung bảo mật trong truyền thông', data:[2.67,2.05,2.63,2.21], borderColor:palette.violet, backgroundColor:palette.violet, tension:.3, pointRadius:5, borderWidth:3 },
+    ]},
+  options:{ responsive:true, scales:{ y:{ min:1.5, max:3, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// Root Cause page: trend của nhóm "đối tác" + lý do "không nhận diện được đối tác", qua 4 đợt — minh chứng RC1 là vấn đề cấu trúc
+mkChart(document.getElementById('chartRCTrend'), {
+  type:'line',
+  data:{ labels:['Jun','Aug W2','Aug W4','Oct W1'],
+    datasets:[
+      { label:'Nhóm driver "Đối tác" (TI trung bình có trọng số)', data:[2.65,2.32,2.32,2.31], borderColor:palette.pink, backgroundColor:palette.pink, tension:.3, pointRadius:5, borderWidth:3 },
+      { label:'Lý do "không nhận diện được đối tác"', data:[2.34,1.86,2.00,2.19], borderColor:palette.violet, backgroundColor:palette.violet, tension:.3, pointRadius:5, borderWidth:3, borderDash:[6,4] },
+    ]},
+  options:{ responsive:true, scales:{ y:{ min:1.5, max:3, grid:{color:'#eef0f3'} }, x:{grid:{display:false}} }, plugins:{legend:{position:'bottom'}} }
+});
+
+// Top 10 lý do sát thương nhất — gộp nhóm đối tác/vận hành/truyền thông/bảo mật, đổi qua lại Oct W1 / Aug W2 / Jun
+const reasonsWaves = {
+  oct: { labels:['Không nhận diện được đối tác (A5)','Ít nội dung bảo mật trong truyền thông (A11)','Không nghĩ cần đến tính năng bảo mật (A14)','Đối tác chưa đủ lớn/quen thuộc (A5)','Trải nghiệm lỗi thanh toán (A5)','Lo ngại bảo mật/đồng bộ dữ liệu (A5)','Trải nghiệm hoàn tiền chậm (A5)','App lag / lỗi hệ thống (A7)','Thiếu truyền thông rõ ràng hợp tác (A5)','Không nhất quán truyền thông-thực tế (A11)'],
+    data:[2.19,2.21,2.22,2.24,2.34,2.34,2.35,2.36,2.39,2.57] },
+  aw2: { labels:['Không nhận diện được đối tác (A5)','Ít nội dung bảo mật trong truyền thông (A11)','Ads/push khó chịu (A7)','Không nghĩ cần đến tính năng bảo mật (A14)','Trải nghiệm lỗi thanh toán (A5)','Lo ngại bảo mật/đồng bộ dữ liệu (A5)','Thiếu truyền thông rõ ràng hợp tác (A5)','Trải nghiệm hoàn tiền chậm (A5)','Đối tác chưa đủ lớn/quen thuộc (A5)','Không nhất quán truyền thông-thực tế (A11)'],
+    data:[1.86,2.05,2.09,2.19,2.38,2.38,2.42,2.43,2.59,2.60] },
+  jun: { labels:['Không nhận diện được đối tác (A7)','Ads/push khó chịu (A9)','Thiếu truyền thông rõ ràng hợp tác (A7)','Ít nội dung bảo mật trong truyền thông (A12)','Trải nghiệm thanh toán/hoàn tiền chưa tốt (A7)','Lo ngại bảo mật/đồng bộ dữ liệu (A7)','Đối tác chưa đủ lớn/quen thuộc (A7)','Không nhất quán truyền thông-thực tế (A12)','App lag / lỗi hệ thống (A9)','Thiếu minh bạch phí/điều khoản (A12)'],
+    data:[2.34,2.55,2.58,2.67,2.68,2.74,2.83,2.83,2.83,2.87] },
+};
+const chartReasonsInstance = mkChart(document.getElementById('chartReasons'), {
   type:'bar',
-  data:{ labels:['Không nhận diện được đối tác (A5)','Ít nội dung bảo mật trong truyền thông (A11)','Không nghĩ cần đến tính năng bảo mật (A14)','Đối tác chưa đủ lớn/quen thuộc (A5)','Trải nghiệm lỗi thanh toán (A5)','Lo ngại bảo mật/đồng bộ dữ liệu (A5)','Trải nghiệm hoàn tiền chậm (A5)','App lag / lỗi hệ thống (A7)','Thiếu truyền thông rõ ràng hợp tác (A5)','Không nhất quán truyền thông-thực tế (A11)'],
-    datasets:[{ label:'Trust Index', data:[2.19,2.21,2.22,2.24,2.34,2.34,2.35,2.36,2.39,2.57], backgroundColor:palette.pink }] },
+  data:{ labels: reasonsWaves.oct.labels,
+    datasets:[{ label:'Trust Index', data: reasonsWaves.oct.data, backgroundColor:palette.pink }] },
   options:{ indexAxis:'y', responsive:true, scales:{ x:{min:0,max:4.5, grid:{color:'#eef0f3'}}, y:{grid:{display:false}, ticks:{font:{size:10}}} }, plugins:{legend:{display:false}} }
 });
+bindWaveSwitch('reasonsWaveSwitch', key => {
+  const w = reasonsWaves[key];
+  chartReasonsInstance.data.labels = w.labels;
+  chartReasonsInstance.data.datasets[0].data = w.data;
+  chartReasonsInstance.update();
+}, 'oct');
 
 // Pillar exposure (Oct W1) — tự tính từ A1, viết riêng cho quý gần nhất
 mkChart(document.getElementById('chartPillarExposure'), {
